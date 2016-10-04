@@ -47,11 +47,30 @@ city(lisbon,portugal,0.516).
 
 % Examples of natural language questions
 
-% What rivers are in the world? rivers_in(world, X).
-% What is the largest country? biggest_country(all, X).
-% Where is the largest country? tendo a anterior, esta é fácil
-% Which countrys capital is London? capital(X, london).
+% What | rivers | are | in | world?
+% What is the largest country?
+% Where is the largest country?
+% Which countrys capital is London?
 % Is there some ocean that does not border any country?
 % What are the continents which contain more than two cities whose population exceeds 1 million?
 % Which country bordering the Mediterranean borders a country that is bordered by a country whose population exceeds the population of India?
 
+/* What do you need to do?
+
+Assume the first question above: "What rivers are in the world?". Your
+first step is to convert this sentence in a list of words. Then you
+need to take that list of words and *automatically* generate a Prolog
+query of the type: findall(X,river(X,_),L). The last step is to
+execute this query (maybe using the built-in predicate "call"), and
+return the result (which should be in L).
+
+Hint1: Because some sentences may need nested findall predicates, it is
+recommended to convert the list of words in a tree (for example, using
+a DCG grammar) in order to know where in the code you need to add the
+nested findall with the right predicates.
+
+Hint2: Questions starting with "what", "which", "where" will have a
+findall and probably return the whole list of results. Questions
+starting with "How many" will need a combination of
+"findall(...,...,L), length(L,N)", where N will be the answer.
+*/

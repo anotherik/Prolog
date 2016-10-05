@@ -1,3 +1,3 @@
 % files to load
 
-:- [dbquery, preds].
+:- [main, db/borders, db/cities, db/countries, db/rivers].

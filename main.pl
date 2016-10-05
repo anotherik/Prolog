@@ -11,6 +11,11 @@ cities_in_country(Country, Result) :- city(Result, Country, _).
 cities_in_region(Region, Result) :- country(Country,Region,_,_,_,_,_,_,_,_), cities_in_country(Country, Result).
 countries_in_region(Region, Result) :- country(Result,Region,_,_,_,_,_,_,_,_).
 
+% obtem o maior valor numa lista
+max([X],X).
+max([X|L],X) :- max(L,M), X > M.
+max([X|L],M) :- max(L,M), X =< M.
+
 
 % DCG
 % -----------------------
@@ -22,11 +27,13 @@ sentence(CE) --> close_ended(CE).
 
 open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), location(X).
 open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), det(Det), location(X).
+% where is the largest country
+open_ended(X) --> pronoun(X), verb(Verb), det(Det), adj(X), noun(C).
 close_ended(X) --> verb(Verb), noun(X). %incompleto
 
 %Pronouns
 pronoun(findall(X, Q, L)) --> [what].
-pronoun(pronoun(where)) --> [where].
+pronoun(findall(X, Q, L)) --> [where].
 pronoun(pronoun(which)) --> [which].
 pronoun(pronoun('how many')) --> ['how many'].
 
@@ -34,6 +41,7 @@ pronoun(pronoun('how many')) --> ['how many'].
 noun(noun(river)) --> [river].
 noun(noun(ocean)) --> [ocean].
 noun(noun(mountain)) --> [mountain].
+noun(noun(country)) --> [country].
 
 noun(findall(X, river(X,_), _)) --> [rivers].
 noun(findall(X, rivers_in_country(_,X), _)) --> [rivers].
@@ -56,6 +64,10 @@ prep(prep(on)) --> [on].
 
 %Determinants
 det(det(the)) --> [the].
+
+%Adjectives
+%findall(X, dig(X), Digits), max_list(Digits, Max).
+adj(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [largest].
 
 %Locations
 location(location(south_america)) --> [south_america].

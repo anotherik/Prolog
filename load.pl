@@ -1,3 +1,3 @@
 % files to load
 
-:- [dbquery, preds].
+:- [dbquery, main].

@@ -1,5 +1,10 @@
+1.
 what rivers/cities/countries are in the world
 what rivers/cities are in Country
 what rivers/cities/countries are in Region
 
-where is the largest country
+2.
+where is the largest country/city
+
+3.
+what country\'s capital is City

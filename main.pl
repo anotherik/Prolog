@@ -5,6 +5,9 @@
 on(Item, [Item|_]).
 on(Item, [_|Tail]) :- on(Item, Tail).
 
+empty([], yes).
+empty([_|_], no).
+
 % obtem o maior valor numa lista
 max([X], X).
 max([X1,X2|Tail], Max) :- X1 > X2, max([X1|Tail], Max).
@@ -16,7 +19,7 @@ max([X1,X2|Tail], Max) :- X1 =< X2, max([X2|Tail], Max).
 start(Sentence, Result) :- atomic_list_concat(List, ' ' , Sentence), sentence(Result, List, []).
 
 sentence(OE) --> open_ended(OE), {call(OE)}.
-sentence(CE) --> close_ended(CE).
+sentence(CE) --> close_ended(CE), {call(CE)}.
 %sentence(sentence(FNP,FVP)) --> frase_nom_p(FNP), frase_verb_p(FVP).
 
 open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), location(X).
@@ -25,13 +28,14 @@ open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), det(Det), locatio
 open_ended(X) --> pronoun(X), verb(Verb), det(Det), adj(X), noun(X).
 % which country's capital is london
 open_ended(X) --> pronoun(X), noun(Noun), noun(X), verb(Verb), location(X).
-close_ended(X) --> verb(Verb), noun(X). %incompleto
+%Is there some ocean that does not border any country
+close_ended(X) --> verb(Verb), other(Other), other(Other2), noun(X), other(Other3), other(Other4), not(X), verb(X), other(Other5), noun(X).
 
 %Pronouns
 pronoun(findall(_, _, _)) --> [what].
 pronoun(findall(_, _, _)) --> [where].
 pronoun(findall(_, _, _)) --> [which].
-pronoun(pronoun('how many')) --> ['how many'].
+pronoun(pronoun('howmany')) --> ['howmany'].
 
 %Nouns
 noun(noun(river)) --> [river].
@@ -54,15 +58,28 @@ noun(findall(X, (findall(Area, city(_,_, Area), Areas), max(Areas, MaxArea), cit
 noun(noun('country\'s')) --> ['country\'s'].
 noun(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [capital].
 
+noun(findall(X, (ocean(X), P2),_)) --> [ocean], {write('OCEAN_')}.
+noun(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [country], {write('COUNTRY_')}.
+%noun(country(Country,_,_,_,_,_,_,_,_,_), \+ borders(Country, _)) --> [country].
+
 %Verbs
-verb(verb(is)) --> [is].
+verb(verb(is)) --> [is], {write('IS_')}.
 verb(verb(are)) --> [are].
+verb(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [border], {write('BORDER_')}.
 
 %Prepositions
 prep(prep(in)) --> [in].
 prep(prep(on)) --> [on].
 
-%Determinants
+%Other words
+other(other(there)) --> [there], {write('THERE_')}.
+other(other(some)) --> [some], {write('SOME_')}.
+other(other(that)) --> [that], {write('THAT_')}.
+other(other(does)) --> [does], {write('DOES_')}.
+other(other(any)) --> [any], {write('ANY_')}.
+not(findall(X, (ocean(X), \+ P2),_)) --> [not], {write('NOT_')}.
+
+%Determiners
 det(det(the)) --> [the].
 
 %Adjectives

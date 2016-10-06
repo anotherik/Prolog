@@ -1,3 +1,8 @@
 % files to load
 
-:- [main, db/borders, db/cities, db/countries, db/rivers].
+:-	reconsult(main),
+	reconsult(db/borders),
+	reconsult(db/cities),
+	reconsult(db/countries),
+	reconsult(db/riverss).
+	

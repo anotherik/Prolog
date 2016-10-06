@@ -8,3 +8,6 @@ where is the largest country/city
 
 3.
 what country\'s capital is City
+
+4.
+is there some ocean that does not border any country

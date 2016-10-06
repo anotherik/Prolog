@@ -22,6 +22,12 @@ rivers_in(world, Result) :- river(Result, _).
 % rios de um dado pais
 rivers_in(Country, Result) :- river(Result, List), on(Country, List).
 
+%rivers_in_country(Country, Result) :- river(Result, List), on(Country, List).
+%rivers_in_region(Region, Result) :- country(Country,Region,_,_,_,_,_,_,_,_), rivers_in_country(Country, Result).
+%cities_in_country(Country, Result) :- city(Result, Country, _).
+%cities_in_region(Region, Result) :- country(Country,Region,_,_,_,_,_,_,_,_), cities_in_country(Country, Result).
+%countries_in_region(Region, Result) :- country(Result,Region,_,_,_,_,_,_,_,_).
+
 % capital/regiao/area de um dado pais
 capital(Country, Result) :- country(Country,_,_,_,_,_,_,_,Result,_).
 region(Country, Result) :- country(Country,Result,_,_,_,_,_,_,_,_).
@@ -47,3 +53,15 @@ biggest_country(List, Result) :-
 	areas(List, Areas),
 	max(Areas, Max_area), 
 	country(Result,_,_,_,Max_area,_,_,_,_,_).
+
+
+
+%noun(findall(X, rivers_in_country(_,X), _)) --> [rivers].
+%noun(findall(X, rivers_in_region(_,X), _)) --> [rivers].
+%noun(findall(X, cities_in_country(_,X), _)) --> [cities].
+%noun(findall(X, countries_in_region(_,X), _)) --> [countries].
+%location(findall(X, rivers_in_country(Country,X), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
+%location(findall(X, rivers_in_region(Region,X), _))  --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
+%location(findall(X, cities_in_country(Country,X), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
+%location(findall(X, cities_in_region(Region,X), _))  --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
+%location(findall(X, countries_in_region(Region,X), _)) --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.

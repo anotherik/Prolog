@@ -5,12 +5,6 @@
 on(Item, [Item|_]).
 on(Item, [_|Tail]) :- on(Item, Tail).
 
-rivers_in_country(Country, Result) :- river(Result, List), on(Country, List).
-rivers_in_region(Region, Result) :- country(Country,Region,_,_,_,_,_,_,_,_), rivers_in_country(Country, Result).
-cities_in_country(Country, Result) :- city(Result, Country, _).
-cities_in_region(Region, Result) :- country(Country,Region,_,_,_,_,_,_,_,_), cities_in_country(Country, Result).
-countries_in_region(Region, Result) :- country(Result,Region,_,_,_,_,_,_,_,_).
-
 % obtem o maior valor numa lista
 max([X], X).
 max([X1,X2|Tail], Max) :- X1 > X2, max([X1|Tail], Max).
@@ -45,15 +39,13 @@ noun(noun(ocean)) --> [ocean].
 noun(noun(mountain)) --> [mountain].
 
 noun(findall(X, river(X,_), _)) --> [rivers].
-noun(findall(X, rivers_in_country(_,X), _)) --> [rivers].
-noun(findall(X, rivers_in_region(_,X), _)) --> [rivers].
+noun(findall(X, (river(X,_), on(_,_)), _)) --> [rivers].
+noun(findall(X, (river(X,_), country(_,_,_,_,_,_,_,_,_,_), on(_,_)), _)) --> [rivers].
 
 noun(findall(X, city(X,_,_), _)) --> [cities].
-noun(findall(X, cities_in_country(_,X), _)) --> [cities].
-noun(findall(X, cities_in_region(_,X), _)) --> [cities].
+noun(findall(X, (city(X,_,_), country(_,_,_,_,_,_,_,_,_,_)), _)) --> [cities].
 
 noun(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [countries].
-noun(findall(X, countries_in_region(_,X), _)) --> [countries].
 
 %noun(findall(X, (findall(Area, country(_,_,_,_,Area,_,_,_,_,_), Areas), max(Areas, MaxArea), country(X,_,_,_,MaxArea,_,_,_,_,_)), _)) --> [country].
 noun(findall(X, (findall(Area, country(_,_,_,_,Area,_,_,_,_,_), Areas), max(Areas, MaxArea), country(_,X,_,_,MaxArea,_,_,_,_,_)), _)) --> [country].
@@ -78,14 +70,14 @@ adj(findall(X, (findall(_,_,_), max(_,_), Pred), _)) --> [largest]. % city or co
 
 %Locations
 location(findall(X, river(X,_), _)) --> [world].
-location(findall(X, rivers_in_country(Country,X), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
-location(findall(X, rivers_in_region(Region,X), _))  --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
+location(findall(X, (river(X, L), on(Country, L)), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
+location(findall(X, (river(X, L), country(Country, Region,_,_,_,_,_,_,_,_), on(Country, L)), _)) --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
 
 location(findall(X, city(X,_,_), _)) --> [world].
-location(findall(X, cities_in_country(Country,X), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
-location(findall(X, cities_in_region(Region,X), _))  --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
+location(findall(X, city(X, Country, _), _)) --> [Country], {country(Country,_,_,_,_,_,_,_,_,_)}.
+location(findall(X, (city(X, Country, _), country(Country, Region,_,_,_,_,_,_,_,_)), _)) --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
 
 location(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [world].
-location(findall(X, countries_in_region(Region,X), _))  --> [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
+location(findall(X, country(X, Region,_,_,_,_,_,_,_,_), _)) -->  [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
 
 location(findall(X, country(X,_,_,_,_,_,_,_,Capital,_), _)) --> [Capital], {country(_,_,_,_,_,_,_,_,Capital,_)}.

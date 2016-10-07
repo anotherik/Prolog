@@ -4,5 +4,5 @@
 	reconsult(db/borders),
 	reconsult(db/cities),
 	reconsult(db/countries),
-	reconsult(db/riverss).
+	reconsult(db/rivers).
 	

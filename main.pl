@@ -13,6 +13,38 @@ max([X], X).
 max([X1,X2|Tail], Max) :- X1 > X2, max([X1|Tail], Max).
 max([X1,X2|Tail], Max) :- X1 =< X2, max([X2|Tail], Max).
 
+% pergunta 5
+%(nr de cidades, nr populacao milhoes,resultado lista de continentes)
+get_continents(NC,NP,R) :- get_all_cities_by_population(NP,Cities),
+                                                         get_all_continents(Conts),
+                                                         count_continent(Conts,Cities,L),
+                                                         write(L),
+                                                         get_continents_by_n_cities(L,NC,R).
+
+%retorna lista de continentes com NC de cidades
+%(lista de pares (Continentes, N cidades), n de cidades da pergunta, lista de continentes resultante)
+get_continents_by_n_cities([],_,[]).
+get_continents_by_n_cities([[C,N]|L],NC,[C|T]) :-N>=NC, get_continents_by_n_cities(L,NC,T).
+get_continents_by_n_cities([[_,N]|L],NC,T) :-N=<NC, get_continents_by_n_cities(L,NC,T).
+
+%retorna lista com pares (Continente, nº de cidades com populacao maior que p)
+count_continent([],_,[]).
+count_continent([Cont|C],Cities,[[Cont,N]|R]) :- count_cities_by_continent(Cont,Cities,N), count_continent(C,Cities,R).
+
+%retorna o numero de cidades com populacao maior que p do continente dado
+count_cities_by_continent(_,[],0).
+count_cities_by_continent(Cont,[[_,Cont]|T], N) :- count_cities_by_continent(Cont,T,N1), N is N1+1.
+count_cities_by_continent(Cont,[[_,C]|T],N) :- Cont \= C, count_cities_by_continent(Cont,T,N).
+
+%obter lista com todos os continentes, (sort remove repetidos)
+get_all_continents(Cs) :- findall(Country,country(_,Country,_,_,_,_,_,_,_,_),C), sort(C,Cs).
+
+%obtem par com (Cidade,Continente) de cidades com pelo menos P de populacao
+get_city_by_population(Pop,City,Cont) :- city(City,Country,P),P>Pop,country(Country,Cont,_,_,_,_,_,_,_,_).
+
+%obtem lista com todos os pares (cidade,continente)
+get_all_cities_by_population(Pop,Cities) :- findall([City,Continent],get_city_by_population(Pop,City,Continent),Cities).
+
 
 % DCG
 % -----------------------

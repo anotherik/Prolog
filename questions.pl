@@ -20,12 +20,12 @@
 :- start('where is the largest country', Query), write(Query), nl.
 
 % 3
-:- write('Question: what countrys capital is london? '), nl.
-:- start('what countrys capital is london', Query), write(Query), nl.
-:- write('Question: what countrys capital is brasilia? '), nl.
-:- start('what countrys capital is brasilia', Query), write(Query), nl.
-:- write('Question: what countrys capital is lisbon? '), nl.
-:- start('what countrys capital is lisbon', Query), write(Query), nl.
+:- write('Question: what country\'s capital is london? '), nl.
+:- start('what country\'s capital is london', Query), write(Query), nl.
+:- write('Question: what country\'s capital is brasilia? '), nl.
+:- start('what country\'s capital is brasilia', Query), write(Query), nl.
+:- write('Question: what country\'s capital is lisbon? '), nl.
+:- start('what country\'s capital is lisbon', Query), write(Query), nl.
 
 % 4
 :- write('Question: is there some ocean that does not border any country? '), nl.

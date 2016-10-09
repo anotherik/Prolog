@@ -53,7 +53,12 @@ city(lisbon,portugal,0.516).
 % Which countrys capital is London?
 % Is there some ocean that does not border any country?
 % What are the continents which contain more than two cities whose population exceeds 1 million?
-% Which country bordering the Mediterranean borders a country that is bordered by a country whose population exceeds the population of India?
+
+% Which country bordering the Mediterranean borders a -> findall(X, (country(X,_,_,_,_,_,_,_,_,_), borders(X,mediterranean_sea)), L).
+% country that is bordered by a 
+% country whose population exceeds the population of India? -> findall(X, (country(X,_,_,_,_,_,Pop,_,_,_), country(india,_,_,_,_,_,IndianPop,_,_,_), Pop>IndianPop), L).
+
+% findall(C3, (country(C,_,_,_,_,_,Pop,_,_,_), country(india,_,_,_,_,_,IndianPop,_,_,_), Pop>IndianPop, country(C2,_,_,_,_,_,_,_,_,_), country(C3,_,_,_,_,_,_,_,_,_), borders(C,C2), borders(C2,C3)), L).
 
 /* What do you need to do?
 

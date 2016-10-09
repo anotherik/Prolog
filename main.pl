@@ -64,14 +64,17 @@ open_ended(X) --> pronoun(X), noun(Noun), noun(X), verb(Verb), location(X).
 close_ended(X) --> verb(Verb), other(Other), other(Other2), noun(X), other(Other3), other(Other4), not(X), verb(X), other(Other5), noun(X).
 % 					what 		are 		the   continents   which       contain    more     than        two       cities       whose  population exceeds    1         million
 open_ended(X) --> pronoun(X), verb(Verb), det(Det), noun(X), pronoun(X), verb(Verb), adj(X), conj(X), num(Num), location(X), pronoun(X), noun(X), verb(X), num(Num), num(Num).
-
+% 					which 	 country bordering 	 the mediterranean borders 	   a      country   (that            is        bordered        by            a        country)+        whose       population exceeds     the   population     of      india
+open_ended(X) --> pronoun(X), noun(X), verb(X), det(Det), noun(X), verb(X), det(Det2), noun(Noun), other(Other), verb(Verb), verb(Verb2), other(Other2), det(Det), noun(Country), pronoun(Pronoun), noun(X), verb(X), det(Det2), noun(X), prep(Prep), noun(X).
+%                          that           is       bordered         by           a        country
+%repeatBorderedBy(X) --> other(Other), verb(Verb), verb(Verb2), other(Other2), det(Det), noun(Country).
 
 %Pronouns
-pronoun(findall(_, _, _)) --> [what].
-pronoun(findall(_, _, _)) --> [where].
-pronoun(findall(_, _, _)) --> [which].
-pronoun(findall(_, _, _)) --> [than].
-pronoun(findall(_, _, _)) --> [whose].
+pronoun(findall(_,_,_)) --> [what].
+pronoun(findall(_,_,_)) --> [where].
+pronoun(findall(_,_,_), sort(_,_)) --> [which].
+pronoun(findall(_,_,_)) --> [than].
+pronoun(pronoun(whose)) --> [whose].
 pronoun(pronoun('howmany')) --> ['howmany'].
 
 
@@ -104,16 +107,27 @@ noun(findall(X, (ocean(X), P2),_)) --> [ocean], {write('OCEAN_')}.
 noun(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [country], {write('COUNTRY_')}.
 %noun(country(Country,_,_,_,_,_,_,_,_,_), \+ borders(Country, _)) --> [country].
 
+noun(findall(_, (_,_,_,_,_,country(_),_,_,_,_), _),_), sort(_,_)) --> [country].
+noun(findall(_, (_,_,_,_,_,country(C4),_,_,_,borders(C4,mediterranean_sea)), _), sort(_,_)) --> [mediterranean].
+noun(findall(C4, (country(C1,_,_,_,_,_,Pop,_,_,_), country(_,_,_,_,_,_,CountryPop,_,_,_), _, country(C2), country(C3), country(C4), borders(C1,C2), borders(C2,C3), borders(C3,C4), borders(C4,mediterranean_sea)), L),	sort(L,X)) --> [population].
+noun(findall(C4, (country(C1,_,_,_,_,_,Pop,_,_,_), country(_,_,_,_,_,_,CountryPop,_,_,_), Pop>CountryPop, country(C2), country(C3), country(C4), borders(C1,C2), borders(C2,C3), borders(C3,C4), borders(C4,mediterranean_sea)), L),	sort(L,X)) --> [population].
+noun(findall(C4, (country(C1,_,_,_,_,_,Pop,_,_,_), country(Country,_,_,_,_,_,CountryPop,_,_,_), Pop>CountryPop, country(C2), country(C3), country(C4), borders(C1,C2), borders(C2,C3), borders(C3,C4), borders(C4,mediterranean_sea)), L),	sort(L,X)) --> [Country], {country(Country)}.
+
 %Verbs
 verb(verb(is)) --> [is], {write('IS_')}.
 verb(verb(are)) --> [are].
 verb(verb(contain)) --> [contain].
 verb(findall(X, city(_, _, X), _)) --> [exceeds].
 verb(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [border], {write('BORDER_')}.
+verb(verb(bordering)) --> [bordering].
+verb(findall(_, (_,_,_,_,_,country(C4),_,_,borders(),borders(C4,mediterranean_sea)), _), sort(_,_)) --> [borders].
+verb(findall(C4, (country(C1,_,_,_,_,_,Pop,_,_,_), country(_,_,_,_,_,_,CountryPop,_,_,_), Pop>CountryPop, country(C2), country(C3), country(C4), borders(C1,C2), borders(C2,C3), borders(C3,C4), borders(C4,mediterranean_sea)), L), sort(L,X)) --> [exceeds].
+
 
 %Prepositions
 prep(prep(in)) --> [in].
 prep(prep(on)) --> [on].
+prep(prep(of)) --> [of].
 
 %Other words
 other(other(there)) --> [there], {write('THERE_')}.

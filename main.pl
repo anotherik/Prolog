@@ -19,8 +19,8 @@ max([X1,X2|Tail], Max) :- X1 =< X2, max([X2|Tail], Max).
 select_continents(Nr_of_cities, Nr_of_population, R) :- select_all_cities_by_population(Nr_of_population,Cities),
                                                          select_all_continents(Continents),
                                                          count_continent(Continents,Cities,L),
-                                                         write(L),
-                                                         select_continents_with_n_cities(L,Nr_of_cities,R).
+                                                         %write(L),
+                                                         select_continents_with_n_cities(L,Nr_of_cities,R), !.
 
 % lista de continentes com Nr_C cidades
 select_continents_with_n_cities([],_,[]).
@@ -64,8 +64,8 @@ open_ended(X) --> pronoun(X), verb(Verb), det(Det), adj(X), noun(X).
 open_ended(X) --> pronoun(X), noun(Noun), noun(X), verb(Verb), location(X).
 %Is there some ocean that does not border any country
 close_ended(X) --> verb(Verb), other(Other), other(Other2), noun(X), other(Other3), other(Other4), not(X), verb(X), other(Other5), noun(X).
-% 					what 		are 		the   continents   which       contain    more     than        two       cities       whose  population exceeds    1         million
-open_ended(X) --> pronoun(X), verb(Verb), det(Det), noun(X), pronoun(X), verb(Verb), adj(X), conj(X), num(Num), location(X), pronoun(X), noun(X), verb(X), num(Num), num(Num).
+% 					what 		are 		the     continents     which       contain       more        than            two            cities             whose         population   exceeds        1         million
+open_ended(X) --> pronoun(X), verb(Verb), det(Det), noun(Noun), other(Other), verb(Verb2), adj(Adj), other(Other2), num_cities(X), location(Location), pronoun(Pronoun), noun(Pop), verb(Verb3), num_pop(X), other(Other3), !.
 % 					which 	  country  bordering  the  mediterranean borders 	a      country   (that            is     bordered        by           a     country)+        whose   population exceeds     the   population     of      india
 open_ended(X) --> pronoun(X,Y), noun(X,Y), verb(X,Y), det(Det), noun(X,Y), verb(X,Y), det(Det2), noun(X,Y), other(Other), verb(Verb), verb(X,Y), other(Other2), det(Det3), noun(X,Y), pronoun(Pronoun), noun(X,Y), verb(X,Y), det(Det4), noun(X,Y), prep(Prep), noun(X,Y),!.
 %                          that           is       bordered         by           a        country
@@ -75,7 +75,6 @@ open_ended(X) --> pronoun(X,Y), noun(X,Y), verb(X,Y), det(Det), noun(X,Y), verb(
 pronoun(findall(_,_,_)) --> [what].
 pronoun(findall(_,_,_)) --> [where].
 pronoun(findall(_,_,_), sort(_,_)) --> [which], {write('WHICH_')}.
-pronoun(findall(_,_,_)) --> [than].
 pronoun(pronoun(whose)) --> [whose], {write('WHOSE_')}.
 pronoun(pronoun('howmany')) --> ['howmany'].
 
@@ -109,6 +108,9 @@ noun(findall(X, (ocean(X), P2),_)) --> [ocean], {write('OCEAN_')}.
 noun(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [country], {write('COUNTRY_')}.
 %noun(country(Country,_,_,_,_,_,_,_,_,_), \+ borders(Country, _)) --> [country].
 
+noun(noun(continents)) --> [continents].
+noun(noun(population)) --> [population].
+
 noun(findall(_, (_,_,_,_,country(_),_,_,_), _), sort(_,_)) --> [country], {write('COUNTRY1_')}.
 noun(findall(_, (_,_,_,_,country(C3),_,_,borders(C3,mediterranean_sea)), _), sort(_,_)) --> [mediterranean], {write('MEDITERRANEAN_')}.
 noun(findall(_, (_,_,_,country(C2),country(C3),_,borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)) --> [country], {write('COUNTRY2_')}.
@@ -127,7 +129,7 @@ verb(findall(_, (_,_,_,_,country(C3),_,_,borders(C3,_)), _), sort(_,_)) --> [bor
 verb(findall(_, (_,_,_,_,country(C3),_,borders(_,C3),borders(C3,mediterranean_sea)), _), sort(_,_)) --> [borders], {write('BORDERS_')}.
 verb(findall(_, (_,_,_,country(C2),country(C3),borders(_,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)) --> [bordered], {write('BORDERED_')}.
 verb(findall(_, (country(C1,_,_,_,_,_,Pop1,_,_,_),_,Pop1>_,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)) --> [exceeds], {write('EXCEEDS_')}.
-
+verb(verb(exceeds)) --> [exceeds].
 
 %Prepositions
 prep(prep(in)) --> [in].
@@ -140,8 +142,10 @@ other(other(some)) --> [some], {write('SOME_')}.
 other(other(that)) --> [that], {write('THAT_')}.
 other(other(does)) --> [does], {write('DOES_')}.
 other(other(any)) --> [any], {write('ANY_')}.
-other(other(that)) --> [that].
 other(other(by)) --> [by], {write('BY_')}.
+other(other(which)) --> [which].
+other(other(than)) --> [than].
+other(other(million)) --> [million].
 not(findall(X, (ocean(X), \+ P2),_)) --> [not], {write('NOT_')}.
 
 %Determiners
@@ -151,6 +155,10 @@ det(det(a)) --> [a], {write('A_')}.
 %Adjectives
 adj(findall(X, (findall(_,_,_), max(_,_), Pred), _)) --> [largest]. % city or country
 adj(adj(more)) --> [more].
+
+%Numbers
+num_cities(findall(X, select_continents(Num1_int, _, X), _)) --> [Num1], {atom_number(Num1, Num1_int), between(0, 100, Num1_int)}.
+num_pop(findall(X, select_continents(Num1_int, Num2_int, X), _)) --> [Num2], {atom_number(Num2, Num2_int), between(0, 100, Num2_int)}.
 
 %Locations
 location(findall(X, river(X,_), _)) --> [world].
@@ -165,3 +173,5 @@ location(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [world].
 location(findall(X, country(X, Region,_,_,_,_,_,_,_,_), _)) -->  [Region], {country(_,Region,_,_,_,_,_,_,_,_)}.
 
 location(findall(X, country(X,_,_,_,_,_,_,_,Capital,_), _)) --> [Capital], {country(_,_,_,_,_,_,_,_,Capital,_)}.
+
+location(location(cities)) --> [cities].

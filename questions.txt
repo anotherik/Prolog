@@ -2,18 +2,24 @@
 what rivers/cities/countries are in the world
 what rivers/cities are in Country
 what rivers/cities/countries are in Region
+start('what rivers are in ', X).
 
 2.
 where is the largest country/city
+start('where is the largest ', X).
 
 3.
 what country\'s capital is City
+start('what country\'s capital is ', X).
 
 4.
 is there some ocean that does not border any country
+start('is there some ocean that does not border any country, X).
 
 5.
 what are the continents which contain more than two cities whose population exceeds 1 million
+start('what are the continents which contain more than two cities whose population exceeds 1 million, X).
 
 6.
-which country bordering the mediterranean borders a country (that is bordered by a country)+ whose population exceeds the population of Country?
+which country bordering the mediterranean borders a country (that is bordered by a country)+ whose population exceeds the population of Country
+start('which country bordering the mediterranean borders a country that is bordered by a country whose population exceeds the population of ', X).

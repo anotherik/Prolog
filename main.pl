@@ -26,21 +26,29 @@ open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), location(X).
 open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), det(Det), location(X).
 % where is the largest country
 open_ended(X) --> pronoun(X), verb(Verb), det(Det), adj(X), noun(X).
-% which country's capital is london
+% which countrys capital is london
 open_ended(X) --> pronoun(X), noun(Noun), noun(X), verb(Verb), location(X).
 %Is there some ocean that does not border any country
 close_ended(X) --> verb(Verb), other(Other), other(Other2), noun(X), other(Other3), other(Other4), not(X), verb(X), other(Other5), noun(X).
+% 					what 		are 		the   continents   which       contain    more     than        two       cities       whose  population exceeds    1         million
+open_ended(X) --> pronoun(X), verb(Verb), det(Det), noun(X), pronoun(X), verb(Verb), adj(X), conj(X), num(Num), location(X), pronoun(X), noun(X), verb(X), num(Num), num(Num).
+
 
 %Pronouns
 pronoun(findall(_, _, _)) --> [what].
 pronoun(findall(_, _, _)) --> [where].
 pronoun(findall(_, _, _)) --> [which].
+pronoun(findall(_, _, _)) --> [than].
+pronoun(findall(_, _, _)) --> [whose].
 pronoun(pronoun('howmany')) --> ['howmany'].
+
 
 %Nouns
 noun(noun(river)) --> [river].
 noun(noun(ocean)) --> [ocean].
 noun(noun(mountain)) --> [mountain].
+
+noun(findall(X, city(_,_,X), _)) --> [population].
 
 noun(findall(X, river(X,_), _)) --> [rivers].
 noun(findall(X, (river(X,_), on(_,_)), _)) --> [rivers].
@@ -58,6 +66,8 @@ noun(findall(X, (findall(Area, city(_,_, Area), Areas), max(Areas, MaxArea), cit
 noun(noun('country\'s')) --> ['country\'s'].
 noun(findall(X, country(X,_,_,_,_,_,_,_,_,_), _)) --> [capital].
 
+noun(findall(X, country(_,X,_,_,_,_,_,_,_,_), _)) --> [continents].
+
 noun(findall(X, (ocean(X), P2),_)) --> [ocean], {write('OCEAN_')}.
 noun(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [country], {write('COUNTRY_')}.
 %noun(country(Country,_,_,_,_,_,_,_,_,_), \+ borders(Country, _)) --> [country].
@@ -65,6 +75,8 @@ noun(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [country], {write('COUNTRY
 %Verbs
 verb(verb(is)) --> [is], {write('IS_')}.
 verb(verb(are)) --> [are].
+verb(verb(contain)) --> [contain].
+verb(findall(X, city(_, _, X), _)) --> [exceeds].
 verb(findall(X, (ocean(X), \+ borders(_, X)), _)) --> [border], {write('BORDER_')}.
 
 %Prepositions
@@ -80,10 +92,11 @@ other(other(any)) --> [any], {write('ANY_')}.
 not(findall(X, (ocean(X), \+ P2),_)) --> [not], {write('NOT_')}.
 
 %Determiners
-det(det(the)) --> [the].
+det(det(the)) --> [the], {write('THE_')}.
 
 %Adjectives
 adj(findall(X, (findall(_,_,_), max(_,_), Pred), _)) --> [largest]. % city or country
+adj(adj(more)) --> [more].
 
 %Locations
 location(findall(X, river(X,_), _)) --> [world].

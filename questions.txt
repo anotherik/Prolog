@@ -11,3 +11,6 @@ what country\'s capital is City
 
 4.
 is there some ocean that does not border any country
+
+5.
+what are the continents which contain more than two cities whose population exceeds 1 million

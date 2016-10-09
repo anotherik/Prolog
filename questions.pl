@@ -20,7 +20,6 @@
 :- start('where is the largest country', Query), write(Query), nl.
 
 % 3
-<<<<<<< HEAD
 :- write('Question: what countrys capital is london? '), nl.
 :- start('what countrys capital is london', Query), write(Query), nl.
 :- write('Question: what countrys capital is brasilia? '), nl.
@@ -31,16 +30,6 @@
 % 4
 :- write('Question: is there some ocean that does not border any country? '), nl.
 :- start('is there some ocean that does not border any country', R), write(R), nl.
-=======
-:- write('Question 3 ... '), nl.
-:- start('what country\'s capital is london', Query).
-:- start('what country\'s capital is brasilia', Query).
-:- start('what country\'s capital is lisbon', Query).
-
-% 4
-:- write('Question 4 ... '), nl.
-:- start('is there some ocean that does not border any country', R).
->>>>>>> b8c8ae848ae285dba491b6eb2618bb9d2b810953
 
 % 5
 :- write('Question: what are the continents which contain more than 2 cities whose population exceeds 1 million? '), nl.

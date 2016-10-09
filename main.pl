@@ -112,7 +112,7 @@ noun(findall(_, (findall(_, (_,_,_,_,country(_),_,_,_), _), sort(_,_)), _)) --> 
 noun(findall(_, (findall(_, (_,_,_,_,country(C3),_,_,borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [mediterranean].
 noun(findall(_, (findall(_, (_,_,_,country(C2),country(C3),_,borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [country].
 noun(findall(_, (findall(_, (country(C1,_,_,_,_,_,_,_,_,_),_,_,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [country].
-noun(findall(_, (findall(_, (country(C1,_,_,_,_,_,Pop1,_,_,_),_,_,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [population]}.
+noun(findall(_, (findall(_, (country(C1,_,_,_,_,_,Pop1,_,_,_),_,_,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [population].
 noun(findall(_, (findall(_, (country(C1,_,_,_,_,_,Pop1,_,_,_),country(_,_,_,_,_,_,Pop2,_,_,_),Pop>Pop2,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), _), sort(_,_)), _)) --> [population].
 noun(findall(X, (findall(C3, (country(C1,_,_,_,_,_,Pop1,_,_,_),country(Country,_,_,_,_,_,Pop2,_,_,_),Pop>Pop2,country(C2),country(C3),borders(C1,C2),borders(C2,C3),borders(C3,mediterranean_sea)), L), sort(L,X)), _)) --> [Country], {country(Country)}.
 

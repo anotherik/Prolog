@@ -17,13 +17,13 @@
 
 % 3
 :- write('Question 3 ... '), nl.
-:- start('what countrys capital is london', Query).
-:- start('what countrys capital is brasilia', Query).
-:- start('what countrys capital is lisbon', Query).
+:- start('what country\'s capital is london', Query).
+:- start('what country\'s capital is brasilia', Query).
+:- start('what country\'s capital is lisbon', Query).
 
 % 4
 :- write('Question 4 ... '), nl.
-:- start('is there some ocean that does not border any country, R).
+:- start('is there some ocean that does not border any country', R).
 
 % 5
 :- write('Question 5 ... '), nl.

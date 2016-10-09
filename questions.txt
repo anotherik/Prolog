@@ -16,4 +16,4 @@ is there some ocean that does not border any country
 what are the continents which contain more than two cities whose population exceeds 1 million
 
 6.
-which country bordering the mediterranean borders a country (that is bordered by a country)+ whose population exceeds the population of india?
+which country bordering the mediterranean borders a country (that is bordered by a country)+ whose population exceeds the population of Country?

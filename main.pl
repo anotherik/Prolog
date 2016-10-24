@@ -2,57 +2,82 @@
 
 % verifica se um dado item pertence a uma lista
 on(Item, [Item|_]).
-on(Item, [_|Tail]) :- on(Item, Tail).
+on(Item, [_|Tail]) :- 
+		on(Item, Tail).
 
 empty([], yes).
 empty([_|_], no).
 
 % obtem o maior valor numa lista
 max([X], X).
-max([X1,X2|Tail], Max) :- X1 > X2, max([X1|Tail], Max).
-max([X1,X2|Tail], Max) :- X1 =< X2, max([X2|Tail], Max).
-
+max([X1,X2|Tail], Max) :- 
+		X1 > X2, 
+		max([X1|Tail], Max).
+max([X1,X2|Tail], Max) :- 
+		X1 =< X2, 
+		max([X2|Tail], Max).
 
 %  ------------------------- Pergunta 5 -------------------------  %
 
 % (nr de cidades, nr populacao (milhoes),resultado (lista de continentes))
-select_continents(Nr_of_cities, Nr_of_population, R) :- select_all_cities_by_population(Nr_of_population,Cities),
-                                                         select_all_continents(Continents),
-                                                         count_continent(Continents,Cities,L),
-                                                         select_continents_with_n_cities(L,Nr_of_cities,R), !.
+select_continents(Nr_of_cities, Nr_of_population, R) :- 
+		select_all_cities_by_population(Nr_of_population,Cities),
+        select_all_continents(Continents),
+        count_continent(Continents,Cities,L),
+        select_continents_with_n_cities(L,Nr_of_cities,R), !.
 
 % lista de continentes com Nr_C cidades
 select_continents_with_n_cities([],_,[]).
-select_continents_with_n_cities([[C,N]|L],Nr_C,[C|T]) :- N >= Nr_C, select_continents_with_n_cities(L,Nr_C,T).
-select_continents_with_n_cities([[_,N]|L],Nr_C,T) :- N =< Nr_C, select_continents_with_n_cities(L,Nr_C,T).
+select_continents_with_n_cities([[C,N]|L],Nr_C,[C|T]) :- 
+			N >= Nr_C, 
+			select_continents_with_n_cities(L,Nr_C,T).
+select_continents_with_n_cities([[_,N]|L],Nr_C,T) :- 
+			N =< Nr_C, 
+			select_continents_with_n_cities(L,Nr_C,T).
 
 % lista com pares ( Continente, numero de cidades com populacao maior que populacao dada)
 count_continent([],_,[]).
-count_continent([Cont|C],Cities,[[Cont,N]|R]) :- count_cities_by_continent(Cont,Cities,N), count_continent(C,Cities,R).
+count_continent([Cont|C],Cities,[[Cont,N]|R]) :- 
+			count_cities_by_continent(Cont,Cities,N), 
+			count_continent(C,Cities,R).
 
 % numero de cidades com populacao maior que populacao do continente dado
 count_cities_by_continent(_,[],0).
-count_cities_by_continent(Cont,[[_,Cont]|T], N) :- count_cities_by_continent(Cont,T,N1), N is N1+1.
-count_cities_by_continent(Cont,[[_,C]|T],N) :- Cont \= C, count_cities_by_continent(Cont,T,N).
+count_cities_by_continent(Cont,[[_,Cont]|T], N) :- 
+			count_cities_by_continent(Cont,T,N1), 
+			N is N1+1.
+count_cities_by_continent(Cont,[[_,C]|T],N) :- 
+			Cont \= C, 
+			count_cities_by_continent(Cont,T,N).
 
 % lista com todos os continentes
-select_all_continents(Continents) :- findall(Country,country(_,Country,_,_,_,_,_,_,_,_),C), sort(C,Continents).
+select_all_continents(Continents) :- 
+			findall(Country,country(_,Country,_,_,_,_,_,_,_,_),C), 
+			sort(C,Continents).
 
 % par com (Cidade , Continente) das cidades com pelo menos P de populacao
-get_city_by_population(Pop,City,Cont) :- city(City,Country,P),P>Pop,country(Country,Cont,_,_,_,_,_,_,_,_).
+get_city_by_population(Pop,City,Cont) :- 
+			city(City,Country,P),
+			P>Pop,country(Country,Cont,_,_,_,_,_,_,_,_).
 
 % lista com todos os pares (cidade, continente)
-select_all_cities_by_population(Pop,Cities) :- findall([City,Continent],get_city_by_population(Pop,City,Continent),Cities).
+select_all_cities_by_population(Pop,Cities) :- 
+			findall([City,Continent],
+			get_city_by_population(Pop,City,Continent),Cities).
 
 %  ------------------------- Fim pergunta 5 -------------------------  %
 
 
 % -----------------------------------  Start of  DCG ----------------------------------- %
 
-start(Sentence, Result) :- atomic_list_concat(List, ' ' , Sentence), sentence(Result, List, []).
+start(Sentence, L) :- 
+	atomic_list_concat(List, ' ' , Sentence), 
+	sentence(Result, List, []), 
+	call(Result),
+	arg(3,Result,L).
 
-sentence(OE) --> open_ended(OE), {call(OE)}.
-sentence(CE) --> close_ended(CE), {call(CE)}.
+sentence(OE) --> open_ended(OE).%, {call(OE)}.
+sentence(CE) --> close_ended(CE).%, {call(CE)}.
 
 %                    what     rivers      are         in         world
 open_ended(X) --> pronoun(X), noun(X), verb(Verb), prep(Prep), location(X).

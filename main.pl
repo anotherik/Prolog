@@ -94,7 +94,8 @@ start(Sentence, L) :-
 	atomic_list_concat(List, ' ', Sentence), 
 	sentence(Result, List, []), 
 	call(Result),
-	arg(3,Result,L).
+	arg(3,Result,L),
+	!.
 
 sentence(OE) --> 
 	open_ended(OE).

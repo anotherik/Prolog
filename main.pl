@@ -83,9 +83,12 @@ intro :-
 
 query_db :-	
 	write('Please enter your query between quote sign and end it with a full stop: '), nl, 
+	repeat,
 	read(X),
 	start(X,L),
-	write(L), nl.
+	write(L), 
+	nl, 
+	fail.
 
 start(Sentence, L) :- 
 	atomic_list_concat(List, ' ', Sentence), 

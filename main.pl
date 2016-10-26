@@ -70,6 +70,23 @@ select_all_cities_by_population(Pop,Cities) :-
 
 % -----------------------------------  Start of  DCG ----------------------------------- %
 
+% intro and instructions
+intro :- 
+   write('Work done by: '), nl,
+   write('Gonçalo Gonçalves - 200804562'), nl,
+   write('Ricardo Gonçalves - 200802530'), nl,nl,
+   write('How to use:'),nl,
+   write('Type query_db. and follow the instructions.'),nl.
+
+% We need to write our query in the form:
+% eg: 'what rivers are in the world'.
+
+query_db :-	
+	write('Please enter your query between quote sign and end it with a full stop: '), nl, 
+	read(X),
+	start(X,L),
+	write(L), nl.
+
 start(Sentence, L) :- 
 	atomic_list_concat(List, ' ', Sentence), 
 	sentence(Result, List, []), 

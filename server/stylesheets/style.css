@@ -1,0 +1,116 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#map {
+    height: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+#logo {
+    height: 1.5cm;
+    margin-top: -0.25cm;
+    display: inline-block;
+}
+
+#slider {
+    margin-top: 14px;
+    width: 500px;
+}
+
+.navbar-header p {
+    color: #777;
+    position: fixed;
+    z-index: 1;
+    margin: 23px 0 0 125px;
+}
+
+@media (min-width: 768px) {
+    .navbar-header p {
+        margin: 23px 0 0 110px;
+    }
+}
+
+.navbar-brand {
+    font-size: 35px;
+    padding: 6px 15px;
+}
+
+.navbar .nav li.active a,
+.navbar .nav .dropdown a.active {
+    background-color: #428bca;
+    color: #f8f8f8;
+}
+
+.navbar .nav .dropdown li a {
+    color: #777;
+}
+
+.navbar .nav .dropdown li a:hover {
+    color: #000000;
+}
+
+.navbar .nav .dropdown li.active a {
+    color: #f8f8f8;
+}
+
+.navbar .nav .dropdown li.active a:hover {
+    color: #000000;
+}
+
+.navbar .nav li a:hover {
+    background-color: #eee;
+
+}
+
+.dropdown-menu {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+#carTag, #carTag:hover {
+    cursor: default;
+    background-color: #f8f8f8;
+    color: #777;
+}
+
+.divider-vertical {
+    height: 50px;
+    margin: 0 9px;
+    border-left: 2px solid #D7D2D2;
+    border-right: 1px solid #FFF;
+}
+
+#radiusPanel li a {
+    height: 50px;
+}
+
+#radiusPanel li a:hover {
+    cursor: default;
+}
+
+#radiusPanel li a span:hover {
+    cursor: pointer;
+}
+
+#radiusForm input{
+    width: 100px;
+}
+
+#table, #table tr td, #table tr th {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#table {
+    width: 100%;
+}

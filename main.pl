@@ -1,3 +1,5 @@
+:- discontiguous(open_ended/3, ignore/2, noun/3).
+:- style_check(-singleton).
 %  -------------------- Predicados Auxiliares --------------------  %
 
 % verifica se um dado item pertence a uma lista

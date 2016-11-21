@@ -22,11 +22,11 @@ process_query(Request) :-
     format('~w~n', [Response]).
 
 get_coords(Request) :-
-	(http_parameters(Request, [river(River, [])]);
-	http_parameters(Request, [capital(Capital, [])])),
+	%http_parameters(Request, [river(River, [])]);
+	http_parameters(Request, [capital(Capital, [])]),
 
-    (findall([Lat,Lng], river_coords(River,Lat,Lng), Response);
-    findall([Lat,Lng], country(Capital,_,Lat,Lng,_,_,_,_,_,_), Response)),
+    %findall([Lat,Lng], river_coords(River,Lat,Lng), Response);
+    findall([Lat,Lng], country(Capital,_,Lat,Lng,_,_,_,_,_,_), Response),
 
     format('Content-type: text/plain~n~n'),
     format('~w~n', [Response]).

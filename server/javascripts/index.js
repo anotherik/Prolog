@@ -77,8 +77,9 @@ function displayCapital(capital) {
 	    contentType: 'text/plain',
 	    url: '/coords?capital=' + capital,
 	    success: function(response){
-	    	var coords_array = response.substring(2,response.length-3).split("],[");
-	    
+	    	console.log(response);
+	    	var coords_array = response.substring(2,response.length-3).split(",");
+	    	console.log(coords_array);
     		var lat = coords_array[0];
     		var lng = coords_array[1];
 			

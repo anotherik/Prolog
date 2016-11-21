@@ -15,19 +15,22 @@ function resetMap() {
 }
 
 function query() {
-	var question = $('#queryForm').serialize();
+	var question = $('#query-text').val();//.serialize();
 	var second_word = $('#query-text').val().split(" ")[1];
+	var third_word = $('#query-text').val().split(" ")[2];
 
 	$.ajax({
 	    type: 'GET',
 	    contentType: 'text/plain',
-	    url: '/query',
-	    data: question,
+	    url: '/query?question='+question,
+	    //data: question,
 	    success: function(response){
 	    	console.log(response);
 
 	    	if (second_word == "rivers")
 	    		dispalyRivers(response);
+	    	else if (third_word == "capital")
+	    		dispalyCapitals(response);
 	    }
 	});
 }
@@ -61,6 +64,30 @@ function displayRiver(river) {
 	});
 }
 
+function dispalyCapitals(response) {
+	var capital = response.substring(1,response.length-2);
+	console.log(capital);
+	displayCapital(capital);
+}
+
+function displayCapital(capital) {
+	
+	$.ajax({
+	    type: 'GET',
+	    contentType: 'text/plain',
+	    url: '/coords?capital=' + capital,
+	    success: function(response){
+	    	var coords_array = response.substring(2,response.length-3).split("],[");
+	    
+    		var lat = coords_array[0];
+    		var lng = coords_array[1];
+			
+			createMarker( capital, {"lat":parseFloat(lat), "lng":parseFloat(lng)} );
+			console.log(lat+":"+lng);
+	    }
+	});
+}
+
 function drawLine(path) {
 	var line = new google.maps.Polyline({
 		path: path,
@@ -71,4 +98,12 @@ function drawLine(path) {
 	});
   	lines.push(line);
   	line.setMap(map);
+}
+
+function createMarker(capital, myLatLng){
+	var marker = new google.maps.Marker({
+       position: myLatLng,
+       map: map,
+       title: capital
+    });
 }

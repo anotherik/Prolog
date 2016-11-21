@@ -1,3 +1,7 @@
+% country(Country,Region,Latitude,Longitude,
+%         Area/1000,Area mod 1000,
+%         Population/1000000,Population mod 1000000 / 1000,
+%         Capital,Currency)
 country(afghanistan,southern_asia,33,65,250,0,29,835,kabul,afghani).
 country(albania,southern_europe,41,20,11,100,2,994,tirana,lek).
 country(algeria,northern_africa,28,3,919,590,34,994,algiers,dinar).

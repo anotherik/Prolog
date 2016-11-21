@@ -1,0 +1,1 @@
+swipl -s load.pl -f server/server.pl -g 'server(3000)'

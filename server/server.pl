@@ -22,7 +22,19 @@ process_query(Request) :-
     format('~w~n', [Response]).
 
 get_coords(Request) :-
-	http_parameters(Request, [river(River, [])]),
-	findall([Lat,Lng], river_coords(River,Lat,Lng), Response),
+	(http_parameters(Request, [river(River, [])]);
+	http_parameters(Request, [capital(Capital, [])])),
+
+    (findall([Lat,Lng], river_coords(River,Lat,Lng), Response);
+    findall([Lat,Lng], country(Capital,_,Lat,Lng,_,_,_,_,_,_), Response)),
+
     format('Content-type: text/plain~n~n'),
     format('~w~n', [Response]).
+
+process_query_capitals(Request) :-
+    http_parameters(Request, [question(Question, [])]),
+    start(Question, [H|_]),
+    findall([Lat,Lng], country(H,_,Lat,Lng,_,_,_,_,_,_), Response),
+    format('Content-type: text/plain~n~n'),
+    format('~w~n', [Response]).
+

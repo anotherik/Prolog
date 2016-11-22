@@ -31,6 +31,10 @@ get_coords(Request) :-
 	Country \= true,
 	findall([Lat,Lng], country(_,Country,Lat,Lng,_,_,_,_,_,_), Response))
 	;
+	(http_parameters(Request, [city(City, [optional(true)])]),
+	City \= true,
+	findall([Lat,Lng], country(_,_,Lat,Lng,_,_,_,_,City,_), Response))
+	;
 	(http_parameters(Request, [capital(Capital, [optional(true)])]),
 	Capital \= true,
     findall([Lat,Lng], country(Capital,_,Lat,Lng,_,_,_,_,_,_), Response))

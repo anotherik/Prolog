@@ -55,6 +55,10 @@ function query() {
 	    		dispalyCapitals(response);
 	    	else if (question.indexOf("largest country") >= 0)
 	    		dispalyCountries(response);
+	    	else if (question.indexOf("countries") >= 0)
+	    		dispalyCountries(response);
+	    	else if (question.indexOf("cities") >= 0)
+	    		dispalyCities(response);
 	    },
 	    error: function(response){
 	    	console.log("FAIL");
@@ -121,13 +125,28 @@ function displayCapital(capital) {
 }
 
 function dispalyCountries(response) {
-	var country = response.substring(1,response.length-2);
-	console.log(country);
-	displayCountry(country);
+	
+	var country = "";
+	if (response.indexOf(",") >= 0){
+		country = response.substring(1,response.length-2);
+		console.log(country.split(","));//[i]);
+		var countries = country.split(",");//[i];
+		console.log(countries.length);
+		for (var i = 0; i < countries.length; i++){
+			console.log(countries[i]);
+			country = countries[i];
+			displayCountry2(country);
+		}
+	}
+	else{
+		country = response.substring(1,response.length-2);
+		console.log(country);
+		displayCountry(country);
+	}
 }
 
 function displayCountry(country) {
-	
+
 	$.ajax({
 	    type: 'GET',
 	    contentType: 'text/plain',
@@ -147,10 +166,78 @@ function displayCountry(country) {
 			}
 
 			map.setZoom(3);
-			console.log(lat+":"+lng);
 	    }
 	});
 }
+
+function displayCountry2(country) {
+
+	$.ajax({
+	    type: 'GET',
+	    contentType: 'text/plain',
+	    url: '/coords?capital=' + country,
+	    success: function(response){
+	    	console.log(response);
+	    	
+    		var coords_array = response.substring(2,response.length-3).split("],[");
+	    	console.log(coords_array);
+
+	    	for (var i = 0; i < coords_array.length; i++) {
+	    		var lat = coords_array[i].split(",")[0];
+	    		var lng = coords_array[i].split(",")[1];
+	    		var coords_json = {"lat":parseFloat(lat), "lng":parseFloat(lng)}
+	    		createMarker( country, coords_json);
+			    map.panTo(coords_json);
+			}
+
+			map.setZoom(3);
+	    }
+	});
+}
+
+
+function dispalyCities(response) {
+	var cities = response.substring(1,response.length-2);
+	if (response.indexOf(",") >= 0){
+		city = response.substring(1,response.length-2);
+		console.log(city.split(","));//[i]);
+		var cities = city.split(",");//[i];
+		console.log(cities.length);
+		for (var i = 0; i < cities.length; i++){
+			//console.log(cities[i]);
+			city = cities[i];
+			displayCity(city);
+		}
+	}
+}
+
+function displayCity(city) {
+	
+	$.ajax({
+	    type: 'GET',
+	    contentType: 'text/plain',
+	    url: '/coords?city=' + city,
+	    success: function(response){
+	    	//console.log("resposta: "+response);
+	    	
+    		var coords_array = response.substring(2,response.length-3).split("],[");
+	    	//console.log("coords array: "+coords_array);
+
+	    	for (var i = 0; i < coords_array.length; i++) {
+	    		var lat = coords_array[i].split(",")[0];
+	    		var lng = coords_array[i].split(",")[1];
+	    		var coords_json = {"lat":parseFloat(lat), "lng":parseFloat(lng)}
+	    		if (lat!==undefined && lng!==undefined){
+		    		createMarker( city, coords_json);
+				    map.panTo(coords_json);
+				}
+			}
+
+			map.setZoom(3);
+	    }
+	});
+}
+
 
 function drawLine(name, path) {
 	var line = new google.maps.Polyline({

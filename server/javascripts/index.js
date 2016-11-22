@@ -11,7 +11,7 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		mapTypeId: 'roadmap',
     	center: {lat: 41.158, lng: -8.629},
-    	zoom: 3
+    	zoom: 2
     });
 }
 
@@ -31,7 +31,7 @@ function resetMap() {
 	removeLines();
 	removeMarkers();
 	map.panTo({lat: 41.158, lng: -8.629});
-	map.setZoom(3);
+	map.setZoom(2);
 	//map.setCenter(new google.maps.LatLng(41.158, -8.629));
 }
 
@@ -61,6 +61,8 @@ function query() {
 	    		displayCities(response);
 
 	    	$("#error").text("");
+
+	    	showResponseOnList(response);
 	    	
 	    },
 	    error: function(response){
@@ -69,9 +71,18 @@ function query() {
     		var sentence = sentences[Math.floor(Math.random()*sentences.length)];
     		//alert(sentence);
     		$("#error").text(sentence);
-	    	// DO SOMETHING
 	    }
 	});
+}
+
+function showResponseOnList(response) {
+	$('#response-list').empty();
+	var response_array = response.replace(new RegExp(/[\[\]]/g), "").split(",");
+	for (var i = 0; i < response_array.length; i++) {
+        var li = document.createElement('li');
+        li.innerHTML = response_array[i];
+        $('#response-list').append(li);
+    }
 }
 
 function displayRivers(response) {
@@ -87,17 +98,15 @@ function displayRiver(river) {
 	    contentType: 'text/plain',
 	    url: '/coords?river=' + river,
 	    success: function(response){
-	    	//console.log(river);
-	    	//console.log(response);
 	    	var coords_array = response.substring(2,response.length-3).split("],[");
-	    	//console.log(coords_array.length);
 
 	    	for (var i = 0; i < coords_array.length; i++) {
 	    		var lat = coords_array[i].split(",")[0];
 	    		var lng = coords_array[i].split(",")[1];
- 				json_coords_array.push({"lat":parseFloat(lat), "lng":parseFloat(lng)});
+	    		var coords_json = {"lat":parseFloat(lat), "lng":parseFloat(lng)};
+ 				json_coords_array.push(coords_json);
 			}
-			//console.log(json_coords_array);
+
 			drawLine(river, json_coords_array);
 	    }
 	});
@@ -211,7 +220,7 @@ function displayCities(response) {
 		var cities = city.split(",");//[i];
 		console.log(cities.length);
 		for (var i = 0; i < cities.length; i++){
-			//console.log(cities[i]);
+			console.log(cities[i]);
 			city = cities[i];
 			displayCity(city);
 		}

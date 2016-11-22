@@ -2,6 +2,7 @@
 %         Area/1000,Area mod 1000,
 %         Population/1000000,Population mod 1000000 / 1000,
 %         Capital,Currency)
+
 country(afghanistan,southern_asia,33,65,250,0,29,835,kabul,afghani).
 country(albania,southern_europe,41,20,11,100,2,994,tirana,lek).
 country(algeria,northern_africa,28,3,919,590,34,994,algiers,dinar).
@@ -20,19 +21,19 @@ country(barbados,caribbean,13,-60,0,166,0,286,bridgetown,dollar).
 country(belarus,eastern_europe,53,28,80,154,9,577,minsk,ruble).
 country(belgium,western_europe,51,4,11,787,10,431,brussels,euro).
 country(belize,central_america,17,-89,8,867,0,321,belmopan,dollar).
-country(benin,western_africa,10,2,43,483,9,325,porto-novo,franc).
+country(benin,western_africa,10,2,43,483,9,325,porto_novo,franc).
 country(bhutan,southern_asia,28,91,18,147,0,708,thimphu,ngultrum).
 country(bolivia,south_america,-17,-65,424,162,10,118,la_paz,boliviano).
 country(bosnia_and_herzegovina,southern_europe,44,18,19,741,4,622,sarajevo,marka).
 country(botswana,southern_africa,-22,24,231,803,2,65,gaborone,pula).
 country(brazil,south_america,-10,-55,3286,470,203,429,brasilia,real).
-country(brunei,south-eastern_asia,5,115,2,228,0,401,bandar_seri_begawan,dollar).
+country(brunei,south_eastern_asia,5,115,2,228,0,401,bandar_seri_begawan,dollar).
 country(bulgaria,eastern_europe,43,25,42,822,7,93,sofia,lev).
 country(burkina_faso,western_africa,13,-2,105,869,16,751,ouagadougou,franc).
 country(burundi,eastern_africa,-4,30,10,745,10,216,bujumbura,franc).
-country(cambodia,south-eastern_asia,13,105,69,900,14,701,phnom_penh,riels).
+country(cambodia,south_eastern_asia,13,105,69,900,14,701,phnom_penh,riels).
 country(cameroon,middle_africa,6,12,183,567,19,711,yaounde,franc).
-country(canada,northern_america,60,-95,3855,81,34,30,ottawa,dollar).
+country(canada,northern_america,60,-110,3855,81,34,30,ottawa,dollar).
 country(cape_verde,western_africa,16,-24,1,557,0,516,praia,escudo).
 country(central_african_republic,middle_africa,7,21,240,534,4,950,bangui,franc).
 country(chad,middle_africa,15,19,495,752,10,758,ndjamena,franc).
@@ -71,14 +72,14 @@ country(greece,southern_europe,39,22,50,942,10,760,athens,euro).
 country(grenada,caribbean,12,-62,0,133,0,108,saint_georges,dollar).
 country(guatemala,caribbean,16,-90,42,42,13,824,guatemala,quetzal).
 country(guinea,micronesia,11,-10,94,925,10,601,conakry,franc).
-country(guinea-bissau,western_africa,12,-15,13,946,1,596,bissau,franc).
+country(guinea_bissau,western_africa,12,-15,13,946,1,596,bissau,franc).
 country(guyana,south_america,5,-59,83,0,0,744,georgetown,dollar).
-country(haiti,caribbean,19,-72,10,714,9,719,port-au-prince,gourde).
+country(haiti,caribbean,19,-72,10,714,9,719,port_au_prince,gourde).
 country(honduras,central_america,-53,73,43,278,8,143,tegucigalpa,lempira).
 country(hungary,eastern_europe,47,20,35,919,9,976,budapest,forint).
 country(iceland,northern_europe,65,-18,39,768,0,311,reykjavik,krona).
 country(india,southern_asia,20,77,1269,338,1189,172,new_delhi,rupee).
-country(indonesia,south-eastern_asia,-5,120,741,96,245,613,jakarta,rupiah).
+country(indonesia,south_eastern_asia,-5,120,741,96,245,613,jakarta,rupiah).
 country(iran,southern_asia,32,53,636,293,77,891,tehran,rial).
 country(iraq,western_asia,33,44,168,753,30,399,baghdad,dinar).
 country(ireland,northern_europe,53,-8,27,135,4,670,dublin,euro).
@@ -92,7 +93,7 @@ country(kenya,eastern_africa,1,38,224,961,41,70,nairobi,shilling).
 country(kiribati,micronesia,1,173,0,313,0,100,tarawa,dollar).
 country(kuwait,western_asia,29,48,6,880,2,595,kuwait,dinar).
 country(kyrgyzstan,central_asia,41,75,76,641,5,587,bishkek,som).
-country(laos,south-eastern_asia,18,105,91,428,6,477,vientiane,kip).
+country(laos,south_eastern_asia,18,105,91,428,6,477,vientiane,kip).
 country(latvia,northern_europe,57,25,24,938,2,204,riga,lat).
 country(lebanon,western_asia,34,36,4,15,4,143,beirut,pound).
 country(lesotho,southern_africa,-30,29,11,720,1,924,maseru,loti).
@@ -104,12 +105,12 @@ country(luxembourg,western_europe,50,6,0,998,0,503,luxembourg,euro).
 country(macedonia,southern_europe,42,22,9,781,2,77,skopje,denar).
 country(madagascar,eastern_africa,-20,47,226,656,21,926,antananarivo,ariary).
 country(malawi,eastern_africa,-14,34,45,745,15,879,lilongwe,kwacha).
-country(malaysia,south-eastern_asia,3,113,127,316,28,728,kuala_lumpur,ringgit).
+country(malaysia,south_eastern_asia,3,113,127,316,28,728,kuala_lumpur,ringgit).
 country(maldives,southern_asia,3,73,0,116,0,394,male,rufiyaa).
 country(mali,western_africa,17,-4,478,764,14,159,bamako,franc).
 country(malta,southern_europe,36,15,0,122,0,408,valletta,lira).
 country(marshall_islands,micronesia,9,168,4,577,0,67,majuro,dollar).
-country(martinique,caribbean,15,-61,397,953,3,281,fort-de-france,euro).
+country(martinique,caribbean,15,-61,397,953,3,281,fort_de_france,euro).
 country(mauritania,western_africa,20,-12,0,788,1,303,nouakchott,ouguiya).
 country(mexico,central_america,23,-102,761,602,113,724,mexico,peso).
 country(micronesia,micronesia,7,158,0,271,0,106,palikir,dollar).
@@ -119,7 +120,7 @@ country(mongolia,eastern_asia,46,105,603,905,3,133,ulaanbaatar,tugrik).
 country(montenegro,southern_europe,42,19,5,415,0,661,podgorica,euro).
 country(morocco,northern_africa,32,-5,172,413,31,968,rabat,dirham).
 country(mozambique,eastern_africa,-18,35,309,494,22,948,maputo,meticail).
-country(myanmar,south-eastern_asia,22,98,261,969,53,999,naypyidaw,kyat).
+country(myanmar,south_eastern_asia,22,98,261,969,53,999,naypyidaw,kyat).
 country(namibia,southern_africa,-22,17,318,694,2,147,windhoek,dollar).
 country(nauru,micronesia,-1,167,0,8,0,9,yaren,dollar).
 country(nepal,southern_asia,28,84,54,363,29,391,kathmandu,rupee).
@@ -137,7 +138,7 @@ country(panama,central_america,9,-80,30,193,3,460,panama,balboa).
 country(papua_new_guinea,melanesia,-6,147,178,703,6,187,port_moresby,kina).
 country(paraguay,south_america,-23,-58,157,46,6,459,asuncion,guarani).
 country(peru,south_america,-10,-76,496,223,29,248,lima,sol).
-country(philippines,south-eastern_asia,13,122,115,830,101,833,manila,peso).
+country(philippines,south_eastern_asia,13,122,115,830,101,833,manila,peso).
 country(poland,eastern_europe,52,20,120,728,38,441,warsaw,zloty).
 country(portugal,southern_europe,40,-8,35,672,10,760,lisbon,euro).
 country(qatar,western_asia,26,51,4,416,0,848,doha,rial).
@@ -155,7 +156,7 @@ country(senegal,western_africa,14,-14,75,749,12,643,dakar,franc).
 country(serbia,southern_europe,44,21,29,913,7,310,belgrade,dinar).
 country(seychelles,eastern_africa,-5,56,0,176,0,89,victoria,rupee).
 country(sierra_leone,western_africa,9,-12,27,699,5,363,freetown,leone).
-country(singapore,south-eastern_asia,1,104,0,267,4,740,singapore,dollar).
+country(singapore,south_eastern_asia,1,104,0,267,4,740,singapore,dollar).
 country(slovakia,eastern_europe,49,20,18,859,5,477,bratislava,koruna).
 country(slovenia,southern_europe,46,15,7,827,2,0,ljubljana,euro).
 country(solomon_islands,melanesia,-8,159,10,985,0,571,honiara,dollar).
@@ -173,10 +174,10 @@ country(syria,western_asia,35,38,71,498,22,517,damascus,pound).
 country(taiwan,eastern_asia,24,121,13,892,23,71,taipei,dollar).
 country(tajikistan,central_asia,39,71,55,251,7,627,dushanbe,somoni).
 country(tanzania,eastern_africa,-6,35,364,898,42,746,dar_es_salaam,shilling).
-country(thailand,south-eastern_asia,15,100,198,455,66,720,bangkok,baht).
+country(thailand,south_eastern_asia,15,100,198,455,66,720,bangkok,baht).
 country(togo,western_africa,8,1,21,925,6,771,lome,franc).
 country(tonga,polynesia,-20,-175,0,289,0,105,nukualofa,paanga).
-country(trinidad_and_tobago,caribbean,11,-61,1,980,1,227,port-of-spain,dollar).
+country(trinidad_and_tobago,caribbean,11,-61,1,980,1,227,port_of_spain,dollar).
 country(tunisia,northern_africa,34,9,63,170,10,629,tunis,dinar).
 country(turkey,western_asia,39,35,301,382,78,785,ankara,lira).
 country(turkmenistan,central_asia,40,60,188,455,4,997,ashgabat,manat).
@@ -188,9 +189,9 @@ country(uk,northern_europe,54,-2,94,525,62,698,london,pound).
 country(usa,northern_america,38,-98,3718,691,313,232,washington,dollar).
 country(uruguay,south_america,-33,-56,68,39,3,308,montevideo,peso).
 country(uzbekistan,central_asia,41,64,172,741,28,128,tashkent,som).
-country(vanuatu,melanesia,-16,167,4,710,0,224,port-vila,vatu).
+country(vanuatu,melanesia,-16,167,4,710,0,224,port_vila,vatu).
 country(venezuela,south_america,8,-66,352,143,27,635,caracas,bolivar).
-country(vietnam,south-eastern_asia,16,106,127,243,90,549,hanoi,dong).
+country(vietnam,south_eastern_asia,16,106,127,243,90,549,hanoi,dong).
 country(yemen,western_asia,15,48,203,849,24,133,sanaa,rial).
 country(zambia,eastern_africa,-15,30,290,584,13,881,lusaka,kwacha).
 country(zimbabwe,eastern_africa,-20,30,150,803,12,84,harare,dollar).
@@ -264,7 +265,7 @@ country(greece).
 country(grenada).
 country(guatemala).
 country(guinea).
-country(guinea-bissau).
+country(guinea_bissau).
 country(guyana).
 country(haiti).
 country(honduras).

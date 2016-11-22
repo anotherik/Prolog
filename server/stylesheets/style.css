@@ -91,6 +91,10 @@ a {
     width: 60%;
 }
 
+#query-type {
+    padding: 8px 0 8px 0;
+}
+
 #reset-button {
     display: inline-block;
     padding: 7px 0 8px 0;
@@ -101,4 +105,26 @@ a {
     display: inline-block;
     width: 50%;
     padding-bottom: 5px;
+}
+
+#response-list {
+    height: 100%;
+    padding-top: 20px;
+    margin-bottom: 0;
+    overflow: hidden;
+    overflow-y:scroll;
+}
+
+#map, .row, .col-md-10, .col-md-2 {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.row {
+    padding-top: 55px;
+}
+
+.col-md-2 nav {
+    height: 100%;
 }

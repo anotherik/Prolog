@@ -50,17 +50,17 @@
 
             <ul class="nav navbar-nav navbar-right" id="buttons">
 
-                <li id="search-bar">
-                    <div class="dropdown">
+                <li id="query-type">
+                    <div class="dropdown" id="dropdown">
                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type of Queries
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li><a href="#">what rivers are in (the) "location"</a></li>
-                            <li><a href="#">what cities are in "location"</a></li>
-                            <li><a href="#">what countries are in "location"</a></li>
-                            <li><a href="#">where is the largest city</a></li>
-                            <li><a href="#">where is the largest country</a></li>
-                            <li><a href="#">what country's capital is "city"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what rivers are in (the) "location"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what cities are in "location"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what countries are in "location"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">where is the largest city</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">where is the largest country</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what country's capital is "city"</a></li>
                           </ul>
                     </div>
                 </li>
@@ -71,7 +71,21 @@
 </div>
 
 <!--PAGE-->
-<div id="map"></div>
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-2">
+                <nav>
+                    <ul id="response-list"></ul>
+                </nav>
+            </div>
+        </div>
+
+
+
 
 <!-- Query modal -->
   <div class="modal fade" id="myModaltest" role="dialog">

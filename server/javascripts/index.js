@@ -225,6 +225,9 @@ function displayCities(response) {
 			displayCity(city);
 		}
 	}
+	else{
+		displayCity(cities);
+	}
 }
 
 function displayCity(city) {

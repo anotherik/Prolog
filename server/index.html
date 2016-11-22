@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/whhg.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -27,24 +28,18 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left" id="buttons">
-                <!-- <li> <a class="glyphicon glyphicon-erase" onclick="resetMap();"></a> </li> -->
+                <li id="reset-button"> <button class="btn btn-default glyphicon icon-broom" onclick="resetMap();"></button> </li>
 
-                <li class="active"><a onclick="resetMap();">Reset Map</a> </li> 
-                
+                <!-- <li class="active"><a onclick="resetMap();">Reset Map</a> </li> -->
                 <!-- <li><a data-toggle="modal" href="#myModaltest">Query</a> </li> -->
 
-
-                <li>                
-                <div class="row">
-                  <div class="col-lg-6">
+                <li id="search-bar">                
                     <div class="input-group">
-                      <input onkeypress="if(event.keyCode == 13) query();" type="text" class="form-control" id="query-text" placeholder="Search for...">
+                      <input onkeypress="if(event.keyCode == 13) query();" type="text" class="form-control" id="query-text" placeholder="Search for..." autofocus>
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button" onclick="query();">Go!</button>
                       </span>
                     </div><!-- /input-group -->
-                  </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
                 </li>
 
             </ul>                

@@ -16,17 +16,6 @@ a {
     cursor: pointer;
 }
 
-#logo {
-    height: 1.5cm;
-    margin-top: -0.25cm;
-    display: inline-block;
-}
-
-#slider {
-    margin-top: 14px;
-    width: 500px;
-}
-
 .navbar-header p {
     color: #777;
     position: fixed;
@@ -77,40 +66,32 @@ a {
     overflow: hidden;
     overflow-y: auto;
 }
-#carTag, #carTag:hover {
-    cursor: default;
-    background-color: #f8f8f8;
-    color: #777;
-}
 
-.divider-vertical {
-    height: 50px;
-    margin: 0 9px;
-    border-left: 2px solid #D7D2D2;
-    border-right: 1px solid #FFF;
-}
-
-#radiusPanel li a {
-    height: 50px;
-}
-
-#radiusPanel li a:hover {
-    cursor: default;
-}
-
-#radiusPanel li a span:hover {
-    cursor: pointer;
-}
-
-#radiusForm input{
-    width: 100px;
-}
-
-#table, #table tr td, #table tr th {
-    border: 1px solid black;
-    text-align: center;
-}
-
-#table {
+.input-group {
+    display: inline-block;
     width: 100%;
+}
+
+.input-group-btn {
+    display: block;
+    width: 50px;
+}
+
+@media (min-width: 768px) {
+    .input-group {
+        width: 250%;
+    }
+}
+
+#search-bar {
+    display: inline-block;
+    padding: 8px 0 8px 0;
+    margin-left: 5px;
+    width: 70%;
+}
+
+#reset-button {
+    display: inline-block;
+    padding: 7px 0 8px 0;
+    width: 50px;
 }

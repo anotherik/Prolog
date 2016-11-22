@@ -1,5 +1,12 @@
 var map, markers = [], lines = [];
 
+window.onload = function(){
+	$(document).bind("keyup keydown", function(e){
+    	if(e.ctrlKey && e.keyCode == 76)
+        	resetMap();
+	});
+};
+
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		mapTypeId: 'roadmap',
@@ -8,7 +15,21 @@ function initMap() {
     });
 }
 
+function removeLines() {
+	for (var i = 0; i < lines.length; i++)
+    	lines[i].setMap(null);
+    lines = [];
+}
+
+function removeMarkers() {
+	for (var i = 0; i < markers.length; i++)
+    	markers[i].setMap(null);
+    markers = [];
+}
+
 function resetMap() {
+	removeLines();
+	removeMarkers();
 	map.panTo({lat: 41.158, lng: -8.629});
 	map.setZoom(3);
 	//map.setCenter(new google.maps.LatLng(41.158, -8.629));
@@ -31,6 +52,10 @@ function query() {
 	    		dispalyRivers(response);
 	    	else if (third_word == "capital")
 	    		dispalyCapitals(response);
+	    },
+	    error: function(response){
+	    	console.log("FAIL");
+	    	// DO SOMETHING
 	    }
 	});
 }
@@ -59,7 +84,7 @@ function displayRiver(river) {
  				json_coords_array.push({"lat":parseFloat(lat), "lng":parseFloat(lng)});
 			}
 			//console.log(json_coords_array);
-			drawLine(json_coords_array);
+			drawLine(river, json_coords_array);
 	    }
 	});
 }
@@ -82,16 +107,20 @@ function displayCapital(capital) {
 	    	console.log(coords_array);
     		var lat = coords_array[0];
     		var lng = coords_array[1];
+    		var coords_json = {"lat":parseFloat(lat), "lng":parseFloat(lng)}
 			
-			createMarker( capital, {"lat":parseFloat(lat), "lng":parseFloat(lng)} );
+			createMarker( capital, coords_json);
+			map.panTo(coords_json);
+			map.setZoom(4);
 			console.log(lat+":"+lng);
 	    }
 	});
 }
 
-function drawLine(path) {
+function drawLine(name, path) {
 	var line = new google.maps.Polyline({
 		path: path,
+		title: name,
 		geodesic: true,
 		strokeColor: '#06425C',
 		strokeOpacity: 1.0,
@@ -101,10 +130,11 @@ function drawLine(path) {
   	line.setMap(map);
 }
 
-function createMarker(capital, myLatLng){
+function createMarker(name, myLatLng){
 	var marker = new google.maps.Marker({
        position: myLatLng,
        map: map,
-       title: capital
+       title: name
     });
+    markers.push(marker);
 }

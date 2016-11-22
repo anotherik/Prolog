@@ -21,8 +21,10 @@ river(chenab,[indus,india,pakistan]).
 river(chindwin,[ayeyarwady,myanmar]).
 river(chu_river,[none,kyrgyzstan,kazakhstan]).
 river(churchill,[hudson_bay,canada]).
+river(churchill_newfoundland,[atlantic_ocean,canada]).
 river(cimarron,[arkansas,usa]).
 river(colorado,[gulf_of_california,gulf_of_mexico,usa,mexico]).
+river(colorado_argentina,[argentina]).
 river(columbia,[pacific_ocean,usa,canada]).
 river(congo,[atlantic_ocean,congo,central_african_republic,angola,tanzania,cameroon,zambia,burundi,rwanda]).
 river(cooper,[lake_eyre,australia]).
@@ -87,6 +89,7 @@ river(loire,[atlantic_ocean,france]).
 river(lomami,[congo,congo]).
 river(lower_tunguska,[yenisei,russia]).
 river(mackenzie,[beaufort_sea,canada]).
+river(mackenzie_australia,[bemm,australia]).
 river(madeira,[amazon,brazil,bolivia,peru]).
 river(madre_de_dios,[beni,peru,bolivia]).
 river(magdalena,[caribbean,colombia]).
@@ -94,7 +97,7 @@ river(maranon,[amazon,peru]).
 river(mekong,[south_china_sea,china,myanmar,laos,thailand,cambodia,vietnam]).
 river(milk,[missouri,usa,canada]).
 river(minho,[atlantic_ocean,spain,portugal]).
-river(mississippi,[gulf_of_mexico,usa,canada]).
+river(mississippi,[gulf_of_mexico,usa]).
 river(mtkvari,[caspian_sea,azerbaijan,georgia,armenia,turkey,iran]).
 river(murray,[southern_ocean,australia]).
 river(murrumbidgee_river,[murray_river,australia]).
@@ -137,6 +140,7 @@ river(sao_francisco,[atlantic_ocean,brazil]).
 river(senegal,[atlantic_ocean,guinea,senegal,mali,mauritania]).
 river(sepik,[pacific_ocean,papua_new_guinea,indonesia]).
 river(severn,[uk]).
+river(severn_canada,[canada]).
 river(seversky_donets,[don,russia,ukraine]).
 river(shatt_al-arab,[persian_gulf,iraq,turkey,syria]).
 river(shire,[zambezi,mozambique,malawi]).
@@ -170,6 +174,7 @@ river(vyatka,[kama,russia]).
 river(vychegda,[northern_dvina,russia]).
 river(warburton,[lake_eyre,australia]).
 river(white,[mississippi,usa]).
+river(white_canada,[yukon,canada,usa]).
 river(wu,[yangtze_river,china]).
 river(xingu,[amazon,brazil]).
 river(yalong,[yangtze,china]).

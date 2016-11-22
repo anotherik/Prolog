@@ -59,9 +59,16 @@ function query() {
 	    		displayCountries(response);
 	    	else if (question.indexOf("cities") >= 0)
 	    		displayCities(response);
+
+	    	$("#error").text("");
+	    	
 	    },
 	    error: function(response){
 	    	console.log("FAIL");
+    		sentences = ["Do you think this is funny?","I know where you live!","Stop playing around!","Are you dumb?"];
+    		var sentence = sentences[Math.floor(Math.random()*sentences.length)];
+    		//alert(sentence);
+    		$("#error").text(sentence);
 	    	// DO SOMETHING
 	    }
 	});

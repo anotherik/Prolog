@@ -37,8 +37,7 @@ function resetMap() {
 
 function query() {
 	var question = $('#query-text').val();//.serialize();
-	var second_word = $('#query-text').val().split(" ")[1];
-	var third_word = $('#query-text').val().split(" ")[2];
+	//var second_word = $('#query-text').val().split(" ")[1];
 
 	$.ajax({
 	    type: 'GET',
@@ -48,10 +47,14 @@ function query() {
 	    success: function(response){
 	    	console.log(response);
 
-	    	if (second_word == "rivers")
+	    	if (question.indexOf("rivers") >= 0)
 	    		dispalyRivers(response);
-	    	else if (third_word == "capital")
+	    	else if (question.indexOf("capital") >= 0)
 	    		dispalyCapitals(response);
+	    	else if (question.indexOf("largest city") >= 0)
+	    		dispalyCapitals(response);
+	    	else if (question.indexOf("largest country") >= 0)
+	    		dispalyCountries(response);
 	    },
 	    error: function(response){
 	    	console.log("FAIL");
@@ -112,6 +115,38 @@ function displayCapital(capital) {
 			createMarker( capital, coords_json);
 			map.panTo(coords_json);
 			map.setZoom(4);
+			console.log(lat+":"+lng);
+	    }
+	});
+}
+
+function dispalyCountries(response) {
+	var country = response.substring(1,response.length-2);
+	console.log(country);
+	displayCountry(country);
+}
+
+function displayCountry(country) {
+	
+	$.ajax({
+	    type: 'GET',
+	    contentType: 'text/plain',
+	    url: '/coords?country=' + country,
+	    success: function(response){
+	    	console.log(response);
+	    	
+    		var coords_array = response.substring(2,response.length-3).split("],[");
+	    	console.log(coords_array);
+
+	    	for (var i = 0; i < coords_array.length; i++) {
+	    		var lat = coords_array[i].split(",")[0];
+	    		var lng = coords_array[i].split(",")[1];
+	    		var coords_json = {"lat":parseFloat(lat), "lng":parseFloat(lng)}
+	    		createMarker( country, coords_json);
+			    map.panTo(coords_json);
+			}
+
+			map.setZoom(3);
 			console.log(lat+":"+lng);
 	    }
 	});

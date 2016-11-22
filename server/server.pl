@@ -27,6 +27,10 @@ get_coords(Request) :-
 	River \= true,
 	findall([Lat,Lng], river_coords(River,Lat,Lng), Response))
 	;
+	(http_parameters(Request, [country(Country, [optional(true)])]),
+	Country \= true,
+	findall([Lat,Lng], country(_,Country,Lat,Lng,_,_,_,_,_,_), Response))
+	;
 	(http_parameters(Request, [capital(Capital, [optional(true)])]),
 	Capital \= true,
     findall([Lat,Lng], country(Capital,_,Lat,Lng,_,_,_,_,_,_), Response))

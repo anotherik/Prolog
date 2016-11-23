@@ -54,6 +54,7 @@ river(green,[colorado,usa]).
 river(guapore,[mamore,brazil,bolivia]).
 river(guaviare,[orinoco,colombia]).
 river(han,[yangtze,china]).
+river(han_seoul,[south_korea]).
 river(helmand,[hamun-i-helmand,afghanistan,iran]).
 river(huai,[none,china]).
 river(huallaga,[maranon,peru]).

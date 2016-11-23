@@ -92,11 +92,12 @@ query_db :-
 	nl, 
 	fail.
 
-start(Sentence, L) :- 
+start(Sentence, SortedResult) :- 
 	atomic_list_concat(List, ' ', Sentence), 
-	sentence(Result, List, []), 
-	call(Result),
-	arg(3,Result,L),
+	sentence(Query, List, []), 
+	call(Query),
+	arg(3, Query, Result),
+	sort(Result, SortedResult),
 	!.
 
 sentence(OE) --> 

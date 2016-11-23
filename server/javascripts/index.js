@@ -41,7 +41,8 @@ function resetMap() {
 function query() {
 	var question = $('#query-text').val();//.serialize();
 	//var second_word = $('#query-text').val().split(" ")[1];
-
+	question = question.toLowerCase();
+	question = question.replace('?','');
 	$.ajax({
 	    type: 'GET',
 	    contentType: 'text/plain',

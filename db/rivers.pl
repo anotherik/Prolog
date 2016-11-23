@@ -2,6 +2,7 @@ river(amazon,[atlantic_ocean,brazil,peru,bolivia,colombia,ecuador,venezuela,guya
 river(amu_darya,[aral_sea,uzbekistan,turkmenistan,tajikistan,afghanistan]).
 river(amur,[sea_of_okhotsk,russia,china,mongolia]).
 river(anadyr,[gulf_of_anadyr,russia]).
+river(angara,[yenisei,russia]).
 river(araguaia,[tocantins,brazil]).
 river(aras,[kura,turkey,armenia,azerbaijan,iran]).
 river(arkansas,[mississippi,usa]).

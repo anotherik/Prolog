@@ -32,6 +32,9 @@ function resetMap() {
 	removeMarkers();
 	map.panTo({lat: 41.158, lng: -8.629});
 	map.setZoom(2);
+	$("#show-error").hide();
+	$("#query-text").val("");
+	$("#response-list").hide();
 	//map.setCenter(new google.maps.LatLng(41.158, -8.629));
 }
 
@@ -60,8 +63,9 @@ function query() {
 	    	else if (question.indexOf("cities") >= 0)
 	    		displayCities(response);
 
+	    	$("#response-list").show();
 	    	$("#error").text("");
-
+	    	$("#show-error").hide();
 	    	showResponseOnList(response);
 	    	
 	    },
@@ -70,6 +74,7 @@ function query() {
     		sentences = ["Do you think this is funny?","I know where you live!","Stop playing around!","Are you dumb?"];
     		var sentence = sentences[Math.floor(Math.random()*sentences.length)];
     		//alert(sentence);
+    		$("#show-error").show();
     		$("#error").text(sentence);
 	    }
 	});

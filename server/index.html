@@ -12,10 +12,12 @@
     <link href="stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
     <link href="stylesheets/whhg.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 
 <!--NAVBAR-->
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -27,24 +29,27 @@
             </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
-            <ul class="nav navbar-nav navbar-left" id="buttons">
+            <ul class="nav navbar-nav navbar-left" style="display: inline-block;">
                 <li id="reset-button"> <button class="btn btn-default glyphicon icon-broom" onclick="resetMap();"></button> </li>
 
                 <!-- <li class="active"><a onclick="resetMap();">Reset Map</a> </li> -->
                 <!-- <li><a data-toggle="modal" href="#myModaltest">Query</a> </li> -->
 
-                <li id="search-bar">                
+                <li id="search-bar" style="position: fixed; width: 150px; float: left;">                
                     <div class="input-group">
                       <input onkeypress="if(event.keyCode == 13) query();" type="text" class="form-control" id="query-text" placeholder="Search for..." autofocus>
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onclick="query();">Go!</button>
-                      </span>
-                    </div><!-- /input-group -->
-                </li>
+                        <button class="btn btn-default" type="button" onclick="query();"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>  
 
-                <li id="error-field">
-                    <span id="error" style="color: red"></span>
-                </li>
+                    <div class="alert alert-danger" role="alert" id="show-error">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span id="error"></span>
+                    </div>
+
+                    </div> <!-- /input-group -->
+                
+                </li> 
 
             </ul>    
 
@@ -70,6 +75,7 @@
     </div>
 </div>
 
+
 <!--PAGE-->
 
 
@@ -83,8 +89,6 @@
                 </nav>
             </div>
         </div>
-
-
 
 
 <!-- Query modal -->

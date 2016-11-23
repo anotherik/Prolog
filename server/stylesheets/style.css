@@ -101,10 +101,9 @@ a {
     width: 50px;
 }
 
-#error-field{
-    display: inline-block;
-    width: 50%;
-    padding-bottom: 5px;
+#show-error{
+    display: none;
+    width: 60%;
 }
 
 #response-list {

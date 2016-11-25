@@ -1,8 +1,10 @@
 var map, markers = [], lines = [];
+var region_keywords = ['northern', 'southern', 'eastern', 'western', 'central', 'middle', 'south', 'australia and'];
 
-window.onload = function(){
-	$(document).bind("keyup keydown", function(e){
-    	if(e.ctrlKey && e.keyCode == 76)
+
+window.onload = function() {
+	$(document).bind("keyup keydown", function(e) {
+    	if (e.ctrlKey && e.keyCode == 76)
         	resetMap();
         	$("#query-text").focus();
 	});
@@ -43,16 +45,29 @@ function resetMap() {
 	$("#query-text").focus();
 }
 
-function query() {
-	var question = $('#query-text').val();
+function formatQuestion(raw_question) {
+	raw_question = raw_question.toLowerCase();
+	raw_question = raw_question.replace('?','');
 
-	question = question.toLowerCase();
-	question = question.replace('?','');
+	for (var i = 0; i < region_keywords.length; i++) {
+		var index = raw_question.indexOf(region_keywords[i]);
+		if (index >= 0) {
+			console.log(region_keywords[i]);
+			var question_first_part = raw_question.substring(0, index);
+			var region = raw_question.substring(index).replace(/ /g, '_');
+		}
+	}
+	return question_first_part + region;
+}
+
+function query() {
+	var raw_question = $('#query-text').val();
+	var question = formatQuestion(raw_question);
+
 	$.ajax({
 	    type: 'GET',
 	    contentType: 'text/plain',
 	    url: '/query?question='+question,
-	    //data: question,
 	    success: function(response){
 	    	console.log(response);
 	    	var response_array = response.replace(new RegExp(/[\[\]]/g), "").split(",");
@@ -253,7 +268,6 @@ function displayCity(city) {
 	    }
 	});
 }
-
 
 function drawLine(name, path) {
 	var line = new google.maps.Polyline({

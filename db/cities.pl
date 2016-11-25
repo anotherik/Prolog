@@ -116,7 +116,7 @@ city(munich,germany,1.6).
 city(portland,usa,1.583).
 city(brussels,belgium,1.57).
 city(vienna,austria,1.55).
-city(san_jose,usa,1.538).
+%city(san_jose,usa,1.538).
 city(damman,saudi_arabia,1.525).
 city(copenhagen,denmark,1.525).
 city(brisbane,australia,1.508).

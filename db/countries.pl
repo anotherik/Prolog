@@ -112,7 +112,7 @@ country(malta,southern_europe,36,15,0,122,0,408,valletta,lira).
 country(marshall_islands,micronesia,9,168,4,577,0,67,majuro,dollar).
 country(martinique,caribbean,15,-61,397,953,3,281,fort_de_france,euro).
 country(mauritania,western_africa,20,-12,0,788,1,303,nouakchott,ouguiya).
-country(mexico,central_america,23,-102,761,602,113,724,mexico,peso).
+country(mexico,central_america,23,-102,761,602,113,724,mexico_city,peso).
 country(micronesia,micronesia,7,158,0,271,0,106,palikir,dollar).
 country(moldova,eastern_europe,47,29,13,67,4,314,chisinau,leu).
 country(monaco,western_europe,44,7,0,1,0,30,monaco,euro).

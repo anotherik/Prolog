@@ -4,6 +4,7 @@ window.onload = function(){
 	$(document).bind("keyup keydown", function(e){
     	if(e.ctrlKey && e.keyCode == 76)
         	resetMap();
+        	$("#query-text").focus();
 	});
 };
 
@@ -13,6 +14,11 @@ function initMap() {
     	center: {lat: 41.158, lng: -8.629},
     	zoom: 2
     });
+}
+
+function centerMap() {
+	map.panTo({lat: 41.158, lng: -8.629});
+	map.setZoom(2);
 }
 
 function removeLines() {
@@ -30,17 +36,16 @@ function removeMarkers() {
 function resetMap() {
 	removeLines();
 	removeMarkers();
-	map.panTo({lat: 41.158, lng: -8.629});
-	map.setZoom(2);
+	centerMap();
 	$("#show-error").hide();
 	$("#query-text").val("");
 	$("#response-list").hide();
-	//map.setCenter(new google.maps.LatLng(41.158, -8.629));
+	$("#query-text").focus();
 }
 
 function query() {
-	var question = $('#query-text').val();//.serialize();
-	//var second_word = $('#query-text').val().split(" ")[1];
+	var question = $('#query-text').val();
+
 	question = question.toLowerCase();
 	question = question.replace('?','');
 	$.ajax({
@@ -50,26 +55,27 @@ function query() {
 	    //data: question,
 	    success: function(response){
 	    	console.log(response);
+	    	var response_array = response.replace(new RegExp(/[\[\]]/g), "").split(",");
 
 	    	if (question.indexOf("rivers") >= 0)
-	    		displayRivers(response);
+	    		displayRivers(response_array);
 	    	else if (question.indexOf("capital") >= 0)
-	    		displayCapitals(response);
+	    		displayCapitals(response_array);
 	    	else if (question.indexOf("largest city") >= 0)
-	    		displayCapitals(response);
+	    		displayCapitals(response_array);
 	    	else if (question.indexOf("largest country") >= 0)
-	    		displayCountries(response);
+	    		displayCountries(response_array);
 	    	else if (question.indexOf("countries") >= 0)
-	    		displayCountries(response);
+	    		displayCountries(response_array);
 	    	else if (question.indexOf("cities") >= 0 && question.indexOf("continents") == -1)
-	    		displayCities(response);
+	    		displayCities(response_array);
 	    	else if (question.indexOf("bordering") >= 0)
-	    		displayCountries(response);
+	    		displayCountries(response_array);
 
 	    	$("#response-list").show();
 	    	$("#error").text("");
 	    	$("#show-error").hide();
-	    	showResponseOnList(response);
+	    	showResponseOnList(response_array);
 	    	
 	    },
 	    error: function(response){
@@ -83,9 +89,9 @@ function query() {
 	});
 }
 
-function showResponseOnList(response) {
+function showResponseOnList(response_array) {
 	$('#response-list').empty();
-	var response_array = response.replace(new RegExp(/[\[\]]/g), "").split(",");
+	//var response_array = response.replace(new RegExp(/[\[\]]/g), "").split(",");
 	for (var i = 0; i < response_array.length; i++) {
         var li = document.createElement('li');
         li.innerHTML = response_array[i];
@@ -93,8 +99,7 @@ function showResponseOnList(response) {
     }
 }
 
-function displayRivers(response) {
-	var rivers_array = response.substring(1,response.length-2).split(",");
+function displayRivers(rivers_array) {
 	for (var i = 0; i < rivers_array.length; i++)
 		displayRiver(rivers_array[i]);
 }
@@ -120,10 +125,10 @@ function displayRiver(river) {
 	});
 }
 
-function displayCapitals(response) {
-	var capital = response.substring(1,response.length-2);
-	console.log(capital);
-	displayCapital(capital);
+function displayCapitals(capital_array) {
+	//var capital = response.substring(1,response.length-2);
+	console.log(capital_array[0]);
+	displayCapital(capital_array[0]);
 }
 
 function displayCapital(capital) {
@@ -148,25 +153,18 @@ function displayCapital(capital) {
 	});
 }
 
-function displayCountries(response) {
-	var countries = response.replace(new RegExp(/[\[\]]/g), "").split(",");
-	//var country = "";
-	if (response.indexOf(",") >= 0){
-		//country = response.substring(1,response.length-2);
-		//console.log(country.split(","));//[i]);
-		//var countries = country.split(",");//[i];
-		//console.log(countries.length);
-		for (var i = 0; i < countries.length; i++){
-			console.log(countries[i]);
-			country = countries[i];
-			displayCountry2(country);
+function displayCountries(countries_array) {
+		if (countries_array.length == 1) {
+			console.log(countries_array[0]);
+			displayCountry(countries_array[0]);
 		}
-	}
-	else{
-		country = response.substring(1,response.length-2);
-		console.log(country);
-		displayCountry(country);
-	}
+		else {
+			for (var i = 0; i < countries_array.length; i++){
+				console.log(countries_array[i]);
+				country = countries_array[i];
+				displayCountry2(country);
+			}
+		}
 }
 
 function displayCountry(country) {
@@ -220,22 +218,13 @@ function displayCountry2(country) {
 }
 
 
-function displayCities(response) {
-	var cities = response.substring(1,response.length-2);
-	if (response.indexOf(",") >= 0){
-		city = response.substring(1,response.length-2);
-		console.log(city.split(","));//[i]);
-		var cities = city.split(",");//[i];
-		console.log(cities.length);
-		for (var i = 0; i < cities.length; i++){
-			console.log(cities[i]);
-			city = cities[i];
+function displayCities(cities_array) {
+		console.log(cities_array.length);
+		for (var i = 0; i < cities_array.length; i++){
+			console.log(cities_array[i]);
+			city = cities_array[i];
 			displayCity(city);
 		}
-	}
-	else{
-		displayCity(cities);
-	}
 }
 
 function displayCity(city) {

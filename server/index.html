@@ -60,12 +60,15 @@
                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type of Queries
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what rivers are in (the) "location"</a></li>
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what cities are in "location"</a></li>
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what countries are in "location"</a></li>
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">where is the largest city</a></li>
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">where is the largest country</a></li>
-                            <li><a onclick="$('#query-text').val(this.textContent);" href="#">what country's capital is "city"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- What rivers are in (the) "location"?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- What cities are in "location"</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- What countries are in "location"?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- Where is the largest city?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- Where is the largest country?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- What country's capital is "city"?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2));" href="#">- Is there some ocean that does not border any country?</a></li>
+                             <li><a onclick="$('#query-text').val(this.textContent.substring(2).replace(/\s+/g, ' '));" href="#">- What are the continents which contain more <br> &emsp;&emsp;&emsp; than 2 cities whose population exceeds 1 million?</a></li>
+                            <li><a onclick="$('#query-text').val(this.textContent.substring(2).replace(/\s+/g, ' '));" href="#">- Which country bordering the mediterranean borders <br> &emsp;&emsp;&emsp; a country that is bordered by a country whose<br> &emsp;&emsp;&emsp; population exceeds the population of "country"?</a></li>
                           </ul>
                     </div>
                 </li>

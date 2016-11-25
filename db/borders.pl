@@ -107,7 +107,6 @@ borders(botswana,zimbabwe).
 borders(brazil,argentina).
 borders(brazil,bolivia).
 borders(brazil,colombia).
-borders(brazil,france).
 borders(brazil,guyana).
 borders(brazil,paraguay).
 borders(brazil,peru).
@@ -295,13 +294,11 @@ borders(finland,baltic_sea).
 borders(finland,gulf_of_finland).
 borders(france,andorra).
 borders(france,belgium).
-borders(france,brazil).
 borders(france,germany).
 borders(france,italy).
 borders(france,luxembourg).
 borders(france,monaco).
 borders(france,spain).
-borders(france,suriname).
 borders(france,switzerland).
 borders(france,atlantic_ocean).
 borders(france,bay_of_biscay).
@@ -795,7 +792,6 @@ borders(sudan,south_sudan).
 borders(sudan,indian_ocean).
 borders(sudan,red_sea).
 borders(suriname,brazil).
-borders(suriname,france).
 borders(suriname,guyana).
 borders(suriname,atlantic_ocean).
 borders(swaziland,mozambique).

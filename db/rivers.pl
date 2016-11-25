@@ -110,7 +110,7 @@ river(negro_uruguay,[brazil,uruguay]).
 river(nelson,[hudson_bay,canada,usa]).
 river(nen,[songhua,china]).
 river(niger,[gulf_of_guinea,nigeria,mali,niger,algeria,guinea,cameroon,burkina_faso,cote_divoire,benin,chad]).
-river(nile,[mediterranean,ethiopia,eritrea,sudan,uganda,tanzania,kenya,rwanda,burundi,egypt,congo,south_sudan]).
+river(nile,[mediterranean,ethiopia,eritrea,sudan,uganda,tanzania,kenya,rwanda,burundi,egypt,south_sudan]).
 river(north_saskatchewan,[saskatchewan,canada]).
 river(ob,[gulf_of_ob,russia,kazakhstan,china,mongolia]).
 river(ohio,[mississippi,usa]).

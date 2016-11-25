@@ -61,8 +61,10 @@ function query() {
 	    		displayCountries(response);
 	    	else if (question.indexOf("countries") >= 0)
 	    		displayCountries(response);
-	    	else if (question.indexOf("cities") >= 0)
+	    	else if (question.indexOf("cities") >= 0 && question.indexOf("continents") == -1)
 	    		displayCities(response);
+	    	else if (question.indexOf("bordering") >= 0)
+	    		displayCountries(response);
 
 	    	$("#response-list").show();
 	    	$("#error").text("");
@@ -147,13 +149,13 @@ function displayCapital(capital) {
 }
 
 function displayCountries(response) {
-	
-	var country = "";
+	var countries = response.replace(new RegExp(/[\[\]]/g), "").split(",");
+	//var country = "";
 	if (response.indexOf(",") >= 0){
-		country = response.substring(1,response.length-2);
-		console.log(country.split(","));//[i]);
-		var countries = country.split(",");//[i];
-		console.log(countries.length);
+		//country = response.substring(1,response.length-2);
+		//console.log(country.split(","));//[i]);
+		//var countries = country.split(",");//[i];
+		//console.log(countries.length);
 		for (var i = 0; i < countries.length; i++){
 			console.log(countries[i]);
 			country = countries[i];

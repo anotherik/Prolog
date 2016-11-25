@@ -63,7 +63,10 @@ function formatQuestion(raw_question) {
 function query() {
 	var raw_question = $('#query-text').val();
 	var question = formatQuestion(raw_question);
-
+	//before making a new query we remove the previous lines and the markers
+	removeLines();
+	removeMarkers();
+	
 	$.ajax({
 	    type: 'GET',
 	    contentType: 'text/plain',

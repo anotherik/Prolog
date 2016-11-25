@@ -248,3 +248,5 @@ city(bonita_springs,usa,0.221).
 city(huntsville,usa,0.213).
 city(hickory,usa,0.188).
 city(pau,france,0.181).
+city(wellington,new_zealand,0.393).
+city(canberra,australia,0.365).

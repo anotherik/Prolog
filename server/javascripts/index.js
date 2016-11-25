@@ -46,18 +46,22 @@ function resetMap() {
 }
 
 function formatQuestion(raw_question) {
-	raw_question = raw_question.toLowerCase();
-	raw_question = raw_question.replace('?','');
+	var formated_question = raw_question;
+
+	formated_question = raw_question.toLowerCase();
+	formated_question = formated_question.replace('?','');
 
 	for (var i = 0; i < region_keywords.length; i++) {
-		var index = raw_question.indexOf(region_keywords[i]);
+		var index = formated_question.indexOf(region_keywords[i]);
 		if (index >= 0) {
 			console.log(region_keywords[i]);
-			var question_first_part = raw_question.substring(0, index);
-			var region = raw_question.substring(index).replace(/ /g, '_');
+			var question_first_part = formated_question.substring(0, index);
+			var region = formated_question.substring(index).replace(/ /g, '_');
+			formated_question = question_first_part + region;
 		}
 	}
-	return question_first_part + region;
+
+	return formated_question;
 }
 
 function query() {

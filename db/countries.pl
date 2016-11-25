@@ -69,6 +69,7 @@ country(germany,western_europe,51,9,137,846,81,471,berlin,euro).
 country(ghana,western_africa,8,-2,92,456,24,791,accra,cedi).
 country(gibraltar,southern_europe,36,-5,2,600,0,30,gibraltar,pound).
 country(greece,southern_europe,39,22,50,942,10,760,athens,euro).
+country(greenland,northern_america,67.33,-45.25,836,0,0.0565,0,nuuk,danish_krone).
 country(grenada,caribbean,12,-62,0,133,0,108,saint_georges,dollar).
 country(guatemala,caribbean,16,-90,42,42,13,824,guatemala,quetzal).
 country(guinea,micronesia,11,-10,94,925,10,601,conakry,franc).

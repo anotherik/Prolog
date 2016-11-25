@@ -33,13 +33,16 @@ def main():
 
 	for query in queries:
 		sendQuery(query, browser)
-		time.sleep(3) #escolher o tempo de espera entre queries		
+		if (query == "What rivers are in the world?" or query == "What cities are in the world?" or query == "What countries are in the world?"):
+			time.sleep(8)
+		else:
+			time.sleep(3)	
 
 	queryElement = browser.find_element_by_id("reset-button").click()
 	queryElement = browser.find_element_by_id("query-text")
 	queryElement.send_keys("Goodbye :D")
 	time.sleep(2)
-	
+
 	browser.close()
 
 

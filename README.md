@@ -13,6 +13,15 @@ Query Plan: Given a database of geographical sites (countries, rivers, forests e
 intro.    (for program instructions, optional)  
 query_db. (start querying the program)  
 
+## GUI Mode
+# How to deploy prolog server
+./start.sh  
+Then go to: localhost:3000/server/index.html and have fun.
+
+# Test with BOT
+./dependencies.sh
+python mrBOT.py
+Sit back and enjoy!
 
 # Work done by
 Gonçalo Gonçalves - 200804562  

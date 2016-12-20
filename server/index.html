@@ -80,44 +80,29 @@
 
 
 <!--PAGE-->
-
-
-        <div class="row">
-            <div class="col-md-10">
-                <div id="map"></div>
-            </div>
-            <div class="col-md-2">
-                <nav>
-                    <ul id="response-list"></ul>
-                </nav>
-            </div>
-        </div>
-
-
-<!-- Query modal -->
-  <div class="modal fade" id="myModaltest" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="modalTitle">Query</h4>
-        </div>
-        <div class="modal-body" id="modalBody">
-            <form id="queryForm">
-                <div class="form-group">
-                    <textarea class="form-control" id="query-text" name ="question"></textarea>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="query();">Query</button>
-        </div>
-      </div>
+<div class="row">
+    <div class="col-md-10">
+        <div id="map"></div>
     </div>
-      
+    <div class="col-md-2">
+        <nav>
+            <ul id="response-list"></ul>
+        </nav>
     </div>
-  </div>
+</div>
+
+<footer>            
+        Copyright &copy; 
+        <a href="mailto:gfl.campos@gmail.com">
+        <p class="copyright text-muted">Gonçalo Gonçalves</p>
+        </a>
+        &amp;
+        <a href="mailto:ricardojotagoncalves@hotmail.com">
+        <p class="copyright text-muted">Ricardo Gonçalves</p>
+        </a>
+        2016
+</footer>
+
 
 <script src="javascripts/index.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeWcYxkLVmy4M-K5LXGWkjYREzJZBzKVw&callback=initMap" async defer></script>

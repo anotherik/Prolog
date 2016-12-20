@@ -127,3 +127,28 @@ a {
 .col-md-2 nav {
     height: 100%;
 }
+
+footer {
+    padding-top: 20px;  
+    padding-bottom: 20px; 
+    text-align: center;
+    color: gray;
+}
+footer .list-inline {
+  margin: 0;
+  padding: 0;
+}
+footer .copyright {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+footer a{
+    display: inline-block;
+}
+
+footer a:hover{
+    display: inline-block;
+    text-decoration: none;
+}

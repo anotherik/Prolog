@@ -25,4 +25,6 @@ Sit back and enjoy!
 
 ## Work done by
 Gonçalo Gonçalves - 200804562  
-Ricardo Gonçalves - 200802530  
+Ricardo Gonçalves - 200802530
+
+(Tested with SWI-Prolog version 6.6.4 for amd64)

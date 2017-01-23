@@ -5,7 +5,7 @@ read choice
 case "$choice" in
 	"1") sudo apt-get install python-pip
 	;;
-	"2") sudo yum install python-pip
+	"2") sudo dnf install python-pip
 	;;
 	"3") continue
 	;;

@@ -27,4 +27,4 @@ Sit back and enjoy!
 Gonçalo Gonçalves - 200804562  
 Ricardo Gonçalves - 200802530
 
-(Tested with SWI-Prolog version 6.6.4 for amd64)
+(Tested with SWI-Prolog version 6.6.4 for amd64 and python2.7)

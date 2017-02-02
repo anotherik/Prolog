@@ -18,8 +18,8 @@ query_db. (start querying the program)
 ./start.sh  
 Then go to: localhost:3000/server/index.html and have fun.
 
-## Sneak Peek
-![alt tag](https://github.com/anotherik/Prolog/master/sneak_peek.png)
+## Preview
+![alt tag](https://github.com/anotherik/Prolog/blob/master/sneak_peek.png)
 
 ## Test with BOT
 ./dependencies.sh  
